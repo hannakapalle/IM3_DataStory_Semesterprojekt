@@ -1,0 +1,250 @@
+[
+    {
+        "jahr": 1994,
+        "bienenvoelker": 269938,
+        "veraenderung_abs": null,
+        "veraenderung_prozent": null,
+        "phase": "Rückgang",
+        "niederschlag_mm": 1327.3
+    },
+    {
+        "jahr": 1995,
+        "bienenvoelker": 269180,
+        "veraenderung_abs": -758,
+        "veraenderung_prozent": -0.28,
+        "phase": "Rückgang",
+        "niederschlag_mm": 1331.8
+    },
+    {
+        "jahr": 1996,
+        "bienenvoelker": 269490,
+        "veraenderung_abs": 310,
+        "veraenderung_prozent": 0.12,
+        "phase": "Rückgang",
+        "niederschlag_mm": 1194.5
+    },
+    {
+        "jahr": 1997,
+        "bienenvoelker": 266438,
+        "veraenderung_abs": -3052,
+        "veraenderung_prozent": -1.13,
+        "phase": "Rückgang",
+        "niederschlag_mm": 1134.9
+    },
+    {
+        "jahr": 1998,
+        "bienenvoelker": 259805,
+        "veraenderung_abs": -6633,
+        "veraenderung_prozent": -2.49,
+        "phase": "Rückgang",
+        "niederschlag_mm": 1203.9
+    },
+    {
+        "jahr": 1999,
+        "bienenvoelker": 246278,
+        "veraenderung_abs": -13527,
+        "veraenderung_prozent": -5.21,
+        "phase": "Rückgang",
+        "niederschlag_mm": 1571.4
+    },
+    {
+        "jahr": 2000,
+        "bienenvoelker": 235801,
+        "veraenderung_abs": -10477,
+        "veraenderung_prozent": -4.25,
+        "phase": "Rückgang",
+        "niederschlag_mm": 1401.4
+    },
+    {
+        "jahr": 2001,
+        "bienenvoelker": 221573,
+        "veraenderung_abs": -14228,
+        "veraenderung_prozent": -6.03,
+        "phase": "Rückgang",
+        "niederschlag_mm": 1447.1
+    },
+    {
+        "jahr": 2002,
+        "bienenvoelker": 214280,
+        "veraenderung_abs": -7293,
+        "veraenderung_prozent": -3.29,
+        "phase": "Rückgang",
+        "niederschlag_mm": 1563.2
+    },
+    {
+        "jahr": 2003,
+        "bienenvoelker": 208008,
+        "veraenderung_abs": -6272,
+        "veraenderung_prozent": -2.93,
+        "phase": "Rückgang",
+        "niederschlag_mm": 932.8
+    },
+    {
+        "jahr": 2004,
+        "bienenvoelker": 207945,
+        "veraenderung_abs": -63,
+        "veraenderung_prozent": -0.03,
+        "phase": "Rückgang",
+        "niederschlag_mm": 1171.5
+    },
+    {
+        "jahr": 2005,
+        "bienenvoelker": 208091,
+        "veraenderung_abs": 146,
+        "veraenderung_prozent": 0.07,
+        "phase": "Rückgang",
+        "niederschlag_mm": 1021.8
+    },
+    {
+        "jahr": 2006,
+        "bienenvoelker": 202839,
+        "veraenderung_abs": -5252,
+        "veraenderung_prozent": -2.52,
+        "phase": "Rückgang",
+        "niederschlag_mm": 1231.5
+    },
+    {
+        "jahr": 2007,
+        "bienenvoelker": 193355,
+        "veraenderung_abs": -9484,
+        "veraenderung_prozent": -4.68,
+        "phase": "Rückgang",
+        "niederschlag_mm": 1279.1
+    },
+    {
+        "jahr": 2008,
+        "bienenvoelker": 180026,
+        "veraenderung_abs": -13329,
+        "veraenderung_prozent": -6.89,
+        "phase": "Rückgang",
+        "niederschlag_mm": 1352.4
+    },
+    {
+        "jahr": 2009,
+        "bienenvoelker": 173814,
+        "veraenderung_abs": -6212,
+        "veraenderung_prozent": -3.45,
+        "phase": "Rückgang",
+        "niederschlag_mm": 1175.1
+    },
+    {
+        "jahr": 2010,
+        "bienenvoelker": 165045,
+        "veraenderung_abs": -8769,
+        "veraenderung_prozent": -5.05,
+        "phase": "Rückgang",
+        "niederschlag_mm": 1195.4
+    },
+    {
+        "jahr": 2011,
+        "bienenvoelker": 169391,
+        "veraenderung_abs": 4346,
+        "veraenderung_prozent": 2.63,
+        "phase": "Rückgang",
+        "niederschlag_mm": 1037.5
+    },
+    {
+        "jahr": 2012,
+        "bienenvoelker": 161447,
+        "veraenderung_abs": -7944,
+        "veraenderung_prozent": -4.69,
+        "phase": "Rückgang",
+        "niederschlag_mm": 1323.5
+    },
+    {
+        "jahr": 2013,
+        "bienenvoelker": 169391,
+        "veraenderung_abs": 7944,
+        "veraenderung_prozent": 4.92,
+        "phase": "Erholung",
+        "niederschlag_mm": 1268.4
+    },
+    {
+        "jahr": 2014,
+        "bienenvoelker": 168415,
+        "veraenderung_abs": -976,
+        "veraenderung_prozent": -0.58,
+        "phase": "Erholung",
+        "niederschlag_mm": 1367.3
+    },
+    {
+        "jahr": 2015,
+        "bienenvoelker": 168965,
+        "veraenderung_abs": 550,
+        "veraenderung_prozent": 0.33,
+        "phase": "Erholung",
+        "niederschlag_mm": 1013.5
+    },
+    {
+        "jahr": 2016,
+        "bienenvoelker": 172680,
+        "veraenderung_abs": 3715,
+        "veraenderung_prozent": 2.2,
+        "phase": "Erholung",
+        "niederschlag_mm": 1304.5
+    },
+    {
+        "jahr": 2017,
+        "bienenvoelker": 174986,
+        "veraenderung_abs": 2306,
+        "veraenderung_prozent": 1.34,
+        "phase": "Erholung",
+        "niederschlag_mm": 1244.5
+    },
+    {
+        "jahr": 2018,
+        "bienenvoelker": 179704,
+        "veraenderung_abs": 4718,
+        "veraenderung_prozent": 2.7,
+        "phase": "Erholung",
+        "niederschlag_mm": 1113.8
+    },
+    {
+        "jahr": 2019,
+        "bienenvoelker": 183170,
+        "veraenderung_abs": 3466,
+        "veraenderung_prozent": 1.93,
+        "phase": "Erholung",
+        "niederschlag_mm": 1312.3
+    },
+    {
+        "jahr": 2020,
+        "bienenvoelker": 186827,
+        "veraenderung_abs": 3657,
+        "veraenderung_prozent": 2,
+        "phase": "Erholung",
+        "niederschlag_mm": 1183.6
+    },
+    {
+        "jahr": 2021,
+        "bienenvoelker": 196451,
+        "veraenderung_abs": 9624,
+        "veraenderung_prozent": 5.15,
+        "phase": "Erholung",
+        "niederschlag_mm": 1305.8
+    },
+    {
+        "jahr": 2022,
+        "bienenvoelker": 192917,
+        "veraenderung_abs": -3534,
+        "veraenderung_prozent": -1.8,
+        "phase": "Erholung",
+        "niederschlag_mm": 1029.7
+    },
+    {
+        "jahr": 2023,
+        "bienenvoelker": 198074,
+        "veraenderung_abs": 5157,
+        "veraenderung_prozent": 2.67,
+        "phase": "Erholung",
+        "niederschlag_mm": 1392.6
+    },
+    {
+        "jahr": 2024,
+        "bienenvoelker": 203875,
+        "veraenderung_abs": 5801,
+        "veraenderung_prozent": 2.93,
+        "phase": "Erholung",
+        "niederschlag_mm": 1335.8
+    }
+]

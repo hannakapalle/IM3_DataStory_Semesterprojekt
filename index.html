@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bienen in der Schweiz</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<main>
+    <header>
+        <p class="kicker">Datastory · IM3</p>
+        <h1>Wo sind die Bienen hin?</h1>
+        <p class="lead">
+            Wie hat sich der Bienenbestand in der Schweiz von 1994 bis 2024 entwickelt –
+            und hatte der Niederschlag einen Einfluss darauf?
+        </p>
+    </header>
+
+    <!-- Kennzahlen: werden von script.js gefüllt -->
+    <section class="kennzahlen">
+        <div><strong id="kz-start">–</strong><span>Völker 1994</span></div>
+        <div><strong id="kz-tief">–</strong><span id="kz-tief-label">Tiefpunkt</span></div>
+        <div><strong id="kz-ende">–</strong><span>Völker 2024</span></div>
+    </section>
+
+    <section>
+        <h2>Bienenvölker und Niederschlag pro Jahr</h2>
+        <p class="unterzeile">Balken: Anzahl Bienenvölker · Linie: Jahresniederschlag (Mittel aus 13 Messstationen, mm)</p>
+
+        <div class="filter" role="group" aria-label="Phase wählen">
+            <button data-phase="" class="aktiv">Alle Jahre</button>
+            <button data-phase="rueckgang">Rückgang</button>
+            <button data-phase="erholung">Erholung</button>
+        </div>
+
+        <div class="chart"><canvas id="chart-bienen"></canvas></div>
+
+        <!-- Detail zu einem Jahr: Klick auf einen Balken -->
+        <p id="detail" class="detail">Klickt auf ein Jahr, um die Details zu sehen.</p>
+    </section>
+
+    <section class="grenzen">
+        <h2>Was diese Daten nicht sagen</h2>
+        <p>TODO Frontend-Team: Grenzen der Daten (z. B. Niederschlag ist nur eines von vielen Wetterereignissen, Varroa-Milbe, Pestizide …).</p>
+    </section>
+
+    <footer>
+        <p>Quellen: FAOSTAT (Bienenvölker), MeteoSchweiz/BFS (Jahresniederschlag, homogenisierte Daten).</p>
+        <p id="status" class="status"></p>
+    </footer>
+</main>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<script src="script.js"></script>
+</body>
+</html>

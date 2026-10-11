@@ -1,0 +1,7 @@
+# Zugangsdaten – nie ins Repository
+config.php
+*.env
+
+# Editor und System
+.idea/
+.DS_Store
