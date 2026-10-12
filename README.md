@@ -65,7 +65,7 @@ gleich heissen.
 
 ## Einrichten auf dem Webserver (Hostpoint)
 
-1. `config.template.php` kopieren zu `config.php` und die Zugangsdaten aus
+1. `config.php` kopieren zu `config.php` und die Zugangsdaten aus
    dem Hostpoint Control Panel eintragen. Datei speichern – PhpStorm lädt sie
    per FTP hoch.
 2. In phpMyAdmin die Datenbank wählen, Reiter **SQL**, Inhalt von

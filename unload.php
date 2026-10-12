@@ -17,7 +17,7 @@ header('Content-Type: application/json; charset=utf-8');
 
 if (!file_exists(__DIR__ . '/config.php')) {
     http_response_code(500);
-    echo json_encode(['error' => 'config.php fehlt – siehe config.template.php.']);
+    echo json_encode(['error' => 'config.php fehlt – siehe config.php.']);
     exit;
 }
 

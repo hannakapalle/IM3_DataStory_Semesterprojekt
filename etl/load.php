@@ -6,7 +6,7 @@
  * danach liefert unload.php die Daten an die Story-Seite.
  *
  * Voraussetzung:
- *   - config.php im Projektordner (Vorlage: config.template.php)
+ *   - config.php im Projektordner (Vorlage: config.php)
  *   - Tabelle bienenjahre angelegt (etl/schema.sql in phpMyAdmin ausführen)
  */
 
