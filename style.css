@@ -1,50 +1,207 @@
+/* ==========================================================================
+   Bienen Datastory - Stylesheet
+   ========================================================================== */
+
+/* 1. Grund-System & Farben */
 :root {
-    --text: #222;
-    --hintergrund: #fffdf6;
-    --honig: #e8a317;
-    --rueckgang: #c0582b;
-    --erholung: #4f8a3c;
-    --regen: #3a6ea5;
+    --bg-color: #fdfbf7;
+    --card-bg: #ffffff;
+    --text-main: #2d3748;
+    --text-muted: #718096;
+    --accent-yellow: #e5a93c;
+    --accent-brown: #c85a28;
+    --accent-green: #4e8536;
+    --border-color: #edf2f7;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
 body {
-    margin: 0;
-    font-family: system-ui, sans-serif;
-    color: var(--text);
-    background: var(--hintergrund);
-    line-height: 1.5;
-}
-
-main {
-    max-width: 900px;
-    margin: 0 auto;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-main);
+    line-height: 1.6;
     padding: 2rem 1rem;
 }
 
-.kicker { color: var(--honig); font-weight: bold; text-transform: uppercase; margin: 0; }
-h1 { font-size: 2.5rem; margin: .2rem 0; }
-.lead { font-size: 1.2rem; }
-.unterzeile { color: #666; margin-top: -.5rem; }
+main {
+    max-width: 1000px;
+    margin: 0 auto;
+}
 
+/* 2. Header & Typografie */
+header {
+    margin-bottom: 2.5rem;
+}
+
+.kicker {
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--accent-yellow);
+    margin-bottom: 0.25rem;
+}
+
+h1 {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: #1a202c;
+    margin-bottom: 0.75rem;
+}
+
+p.lead {
+    font-size: 1.15rem;
+    color: #4a5568;
+    max-width: 800px;
+}
+
+h2 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #1a202c;
+    margin-bottom: 0.25rem;
+}
+
+.unterzeile {
+    font-size: 0.95rem;
+    color: var(--text-muted);
+    margin-bottom: 1.25rem;
+}
+
+/* 3. Kennzahlen-Kacheln (Karten mit gelbem Streifen) */
 .kennzahlen {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-    gap: 1rem;
-    margin: 2rem 0;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 3rem;
 }
-.kennzahlen div { background: #fff; border-left: 4px solid var(--honig); padding: 1rem; }
-.kennzahlen strong { display: block; font-size: 1.8rem; }
+
+.kennzahlen > div {
+    background: var(--card-bg);
+    padding: 1.25rem 1.5rem;
+    border-left: 4px solid var(--accent-yellow);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    display: flex;
+    flex-direction: column;
+}
+
+.kennzahlen strong {
+    font-size: 2rem;
+    font-weight: 800;
+    color: #1a202c;
+    line-height: 1.1;
+    margin-bottom: 0.25rem;
+}
+
+.kennzahlen span {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+}
+
+/* 4. Diagramm-Container & Sektionen */
+section {
+    background: var(--card-bg);
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+    margin-bottom: 3rem;
+}
+
+.chart {
+    position: relative;
+    height: 420px;
+    width: 100%;
+    margin-top: 1rem;
+}
+
+/* 5. Filter-Buttons */
+.filter {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+}
 
 .filter button {
-    border: 1px solid #ccc;
-    background: #fff;
-    padding: .4rem .9rem;
-    border-radius: 999px;
+    background: #ffffff;
+    border: 1px solid #cbd5e0;
+    padding: 0.4rem 1rem;
+    border-radius: 20px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: #4a5568;
     cursor: pointer;
+    transition: all 0.2s ease;
 }
-.filter button.aktiv { background: var(--honig); border-color: var(--honig); color: #fff; }
 
-.chart { position: relative; height: 420px; margin: 1rem 0; }
-.detail { background: #fff; padding: 1rem; border: 1px solid #eee; }
-.grenzen { background: #fff4dc; padding: 1rem 1.5rem; margin-top: 2rem; }
-.status { color: #888; font-size: .85rem; }
+.filter button:hover {
+    background: #f7fafc;
+}
+
+.filter button.aktiv {
+    background: var(--accent-yellow);
+    color: #ffffff;
+    border-color: var(--accent-yellow);
+}
+
+/* 6. Interaktives Detail-Feld */
+.detail {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    margin-top: 1rem;
+    font-style: italic;
+}
+
+/* 7. Analyse-Textblöcke */
+.story-analysis {
+    background-color: #f8f9fa;
+    border-left: 4px solid var(--accent-brown);
+    padding: 1.25rem 1.5rem;
+    margin-top: 1.75rem;
+    border-radius: 0 8px 8px 0;
+}
+
+.story-analysis h3 {
+    margin-bottom: 0.4rem;
+    font-size: 1.05rem;
+    color: #2d3748;
+}
+
+.story-analysis p {
+    font-size: 0.95rem;
+    color: #4a5568;
+    line-height: 1.6;
+}
+
+.story-analysis.highlight {
+    background-color: #f0fff4;
+    border-left-color: var(--accent-green);
+}
+
+.story-analysis ul {
+    margin: 0.75rem 0 0 1.2rem;
+}
+
+.story-analysis li {
+    font-size: 0.95rem;
+    margin-bottom: 0.4rem;
+    color: #4a5568;
+}
+
+/* 8. Grenzen & Footer */
+.grenzen {
+    background: #fffaf0;
+    border: 1px solid #feebc8;
+}
+
+footer {
+    text-align: center;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    margin-top: 3rem;
+    padding-bottom: 2rem;
+}

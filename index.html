@@ -13,20 +13,21 @@
         <h1>Wo sind die Bienen hin?</h1>
         <p class="lead">
             Wie hat sich der Bienenbestand in der Schweiz von 1994 bis 2024 entwickelt –
-            und hatte der Niederschlag einen Einfluss darauf?
+            und welchen Einfluss hatten Klima-Faktoren wie Niederschlag, Sonnenschein, Temperatur und Neuschnee darauf?
         </p>
     </header>
 
-    <!-- Kennzahlen: werden von script.js gefüllt -->
+    <!-- Kennzahlen -->
     <section class="kennzahlen">
         <div><strong id="kz-start">–</strong><span>Völker 1994</span></div>
         <div><strong id="kz-tief">–</strong><span id="kz-tief-label">Tiefpunkt</span></div>
         <div><strong id="kz-ende">–</strong><span>Völker 2024</span></div>
     </section>
 
+    <!-- 1. Niederschlag -->
     <section>
-        <h2>Bienenvölker und Niederschlag pro Jahr</h2>
-        <p class="unterzeile">Balken: Anzahl Bienenvölker · Linie: Jahresniederschlag (Mittel aus 13 Messstationen, mm)</p>
+        <h2>1. Bienenvölker und Niederschlag pro Jahr</h2>
+        <p class="unterzeile">Balken: Anzahl Bienenvölker · Linie: Jahresniederschlag (mm)</p>
 
         <div class="filter" role="group" aria-label="Phase wählen">
             <button data-phase="" class="aktiv">Alle Jahre</button>
@@ -35,18 +36,84 @@
         </div>
 
         <div class="chart"><canvas id="chart-bienen"></canvas></div>
-
-        <!-- Detail zu einem Jahr: Klick auf einen Balken -->
         <p id="detail" class="detail">Klickt auf ein Jahr, um die Details zu sehen.</p>
+
+        <div class="story-analysis">
+            <h3>Analyse: Der Regeneffekt</h3>
+            <p>
+                Extrem verregnete Jahre (wie 1999 mit 1'571 mm oder 2002 mit 1'563 mm) fallen häufig mit stärkeren Verlusten bei den Bienenvölkern zusammen. Dauerregen verhindert den Nektarflug und führt dazu, dass Völker auf ihre Vorräte zurückgreifen müssen. Dennoch erklärt der Niederschlag alleine nicht den langjährigen Rückgang bis 2012.
+            </p>
+        </div>
+    </section>
+
+    <!-- 2. Sonnenscheindauer -->
+    <section>
+        <h2>2. Bienenvölker und Sonnenscheindauer</h2>
+        <p class="unterzeile">Balken: Anzahl Bienenvölker · Linie: Jährliche Sonnenscheindauer (in Stunden)</p>
+        <div class="chart"><canvas id="chart-sonne"></canvas></div>
+
+        <div class="story-analysis">
+            <h3>Analyse: Flugwetter & Tracht</h3>
+            <p>
+                Mehr Sonnenstunden (z. B. im Rekordjahr 2003 mit 2'145 Stunden oder 2022 mit 2'179 Stunden) bieten den Bienen ideale Bedingungen für die Nahrungssuche. In sonnenreichen Jahren erholen sich Völker im Folgejahr oft besser. Die Sonnenstunden wirken somit als positiver Beschleuniger für die Völkerentwicklung.
+            </p>
+        </div>
+    </section>
+
+    <!-- 3. Temperatur -->
+    <section>
+        <h2>3. Bienenvölker und Jahrestemperatur</h2>
+        <p class="unterzeile">Balken: Anzahl Bienenvölker · Linie: Mittlere Jahrestemperatur (°C)</p>
+        <div class="chart"><canvas id="chart-temp"></canvas></div>
+
+        <div class="story-analysis">
+            <h3>Analyse: Die Klimaerwärmung im Blick</h3>
+            <p>
+                Seit 2013 liegt die mittlere Jahrestemperatur in der Schweiz konstant über 8.8 °C bis hin zu Spitzenwerten über 10 °C (2022/2023). Dieser Wärmetrend fällt zeitlich exakt mit der stabilen Erholungsphase der Bienenvölker zusammen. Mildere Frühjahre erleichtern die Brutentwicklung, erhöhen jedoch zeitgleich das Risiko einer früheren Ausbreitung von Parasiten wie der Varroamilbe.
+            </p>
+        </div>
+    </section>
+
+    <!-- 4. Neuschnee -->
+    <section>
+        <h2>4. Bienenvölker und Neuschneemengen</h2>
+        <p class="unterzeile">Balken: Anzahl Bienenvölker · Linie: Neuschneemengen (Jahressumme in cm)</p>
+        <div class="chart"><canvas id="chart-schnee"></canvas></div>
+
+        <div class="story-analysis">
+            <h3>Analyse: Der Winterruhe-Effekt</h3>
+            <p>
+                In den 1990er-Jahren gab es noch Neuschneesummen von über 250–300 cm (z. B. 1999), während in der Erholungsphase ab 2013 die Schneemengen spürbar abgenommen haben. Ausreichend Kälte und Schnee garantieren den Bienen eine ungestörte Winterruhe – feuchtkalte Übergangszeiten ohne echten Schnee belasten die Vorräte hingegen stärker.
+            </p>
+        </div>
+    </section>
+
+    <!-- 5. Gesamtschau & Synthese -->
+    <section>
+        <h2>5. Gesamtschau: Welchen Einfluss hat das Klima wirklich?</h2>
+        <p class="unterzeile">Alle Faktoren im direkten Vergleich über die Jahre 1994–2024</p>
+        <div class="chart"><canvas id="chart-alle"></canvas></div>
+
+        <div class="story-analysis highlight">
+            <h3>Fazit der Gesamtanalyse</h3>
+            <p>
+                Die Gegenüberstellung aller Daten zeigt klar: <strong>Das Klima ist ein wichtiger Einflussfaktor, aber nicht der alleinige Grund für den historischen Bienenrückgang.</strong>
+            </p>
+            <ul>
+                <li><strong>Kurzfristig (Wetter):</strong> Extremwetterjahre (sehr nass, extrem kalt) verursachen spürbare Schwankungen von Jahr zu Jahr.</li>
+                <li><strong>Langfristig (Klima):</strong> Der Trend zu höheren Temperaturen und weniger Schnee begünstigt den Früheinschlag der Vegetation und stützt die Erholung der Völker seit 2013.</li>
+                <li><strong>Der blinde Fleck:</strong> Die Wende ab 2013 von der Rückgangs- in die Erholungsphase hängt maßgeblich mit nicht-klimatischen Faktoren zusammen – darunter verbessertes Imkereimanagement, staatliche Förderungen sowie eine gezieltere Bekämpfung der Varroamilbe.</li>
+            </ul>
+        </div>
     </section>
 
     <section class="grenzen">
         <h2>Was diese Daten nicht sagen</h2>
-        <p>TODO Frontend-Team: Grenzen der Daten (z. B. Niederschlag ist nur eines von vielen Wetterereignissen, Varroa-Milbe, Pestizide …).</p>
+        <p>Niederschlag und Temperatur zeigen nur äußere Rahmenbedingungen. Wichtige Einflussfaktoren wie Pestizideinsatz, Monokulturen, Varroa-Befall und das Verhalten der Imkerinnen und Imker sind in diesen Klimadaten nicht enthalten.</p>
     </section>
 
     <footer>
-        <p>Quellen: FAOSTAT (Bienenvölker), MeteoSchweiz/BFS (Jahresniederschlag, homogenisierte Daten).</p>
+        <p>Quellen: FAOSTAT (Bienenvölker), MeteoSchweiz/BFS (Klimadaten, homogenisierte Daten).</p>
         <p id="status" class="status"></p>
     </footer>
 </main>

@@ -26,17 +26,16 @@ try {
     exit('Verbindung fehlgeschlagen: ' . $e->getMessage() . "\n");
 }
 
-// Alten Stand löschen. Das dürfen wir, weil die CSV-Dateien alle Jahre
-// jederzeit neu liefern. So gibt es beim zweiten Aufruf keine doppelten Zeilen.
+// Alten Stand löschen, um doppelte Einträge zu vermeiden.
 $deleted = $pdo->exec('DELETE FROM bienenjahre');
 echo $deleted . " alte Zeilen gelöscht.\n\n";
 
 // prepare() einmal vor der Schleife, execute() pro Zeile.
 $insert = $pdo->prepare(
     'INSERT INTO bienenjahre
-       (jahr, bienenvoelker, veraenderung_abs, veraenderung_prozent, phase, niederschlag_mm)
+       (jahr, bienenvoelker, veraenderung_abs, veraenderung_prozent, phase, niederschlag_mm, sonnenscheindauer_h, temperatur_c, neuschnee_cm)
      VALUES
-       (:jahr, :bienenvoelker, :veraenderung_abs, :veraenderung_prozent, :phase, :niederschlag_mm)'
+       (:jahr, :bienenvoelker, :veraenderung_abs, :veraenderung_prozent, :phase, :niederschlag_mm, :sonnenscheindauer_h, :temperatur_c, :neuschnee_cm)'
 );
 
 foreach ($rows as $row) {
@@ -50,7 +49,7 @@ $total = $pdo->query('SELECT COUNT(*) FROM bienenjahre')->fetchColumn();
 echo "In bienenjahre stehen jetzt {$total} Zeilen.\n\n";
 
 $check = $pdo->query(
-    'SELECT jahr, bienenvoelker, veraenderung_prozent, phase, niederschlag_mm
+    'SELECT jahr, bienenvoelker, veraenderung_prozent, phase, niederschlag_mm, temperatur_c, neuschnee_cm, sonnenscheindauer_h
      FROM bienenjahre
      ORDER BY jahr DESC
      LIMIT 3'
@@ -61,5 +60,8 @@ foreach ($check->fetchAll() as $row) {
         . $row['bienenvoelker'] . " Völker\t"
         . $row['veraenderung_prozent'] . " %\t"
         . $row['phase'] . "\t"
-        . $row['niederschlag_mm'] . " mm\n";
+        . $row['niederschlag_mm'] . " mm\t"
+        . $row['temperatur_c'] . " °C\t"
+        . $row['neuschnee_cm'] . " cm\t"
+        . $row['sonnenscheindauer_h'] . " h\n";
 }

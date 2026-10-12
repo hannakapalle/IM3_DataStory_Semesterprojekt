@@ -35,7 +35,10 @@ function normalizeJahr(array $row): array
             ? null
             : (float) $row['veraenderung_prozent'],
         'phase' => $row['phase'],
-        'niederschlag_mm' => (float) $row['niederschlag_mm'],
+        'niederschlag_mm' => $row['niederschlag_mm'] === null ? null : (float) $row['niederschlag_mm'],
+        'sonnenscheindauer_h' => $row['sonnenscheindauer_h'] === null ? null : (float) $row['sonnenscheindauer_h'],
+        'temperatur_c' => $row['temperatur_c'] === null ? null : (float) $row['temperatur_c'],
+        'neuschnee_cm' => $row['neuschnee_cm'] === null ? null : (float) $row['neuschnee_cm'],
     ];
 }
 
@@ -53,7 +56,7 @@ try {
     $pdo = new PDO($dsn, $username, $password, $options);
 
     $sql = 'SELECT jahr, bienenvoelker, veraenderung_abs, veraenderung_prozent,
-                   phase, niederschlag_mm
+                   phase, niederschlag_mm, sonnenscheindauer_h, temperatur_c, neuschnee_cm
             FROM bienenjahre';
 
     $where = [];

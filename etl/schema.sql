@@ -12,11 +12,14 @@
 -- DECIMAL(6,2) heisst: sechs Ziffern, davon zwei nach dem Komma, z. B. -4.73.
 
 CREATE TABLE bienenjahre (
-  id                   INT AUTO_INCREMENT PRIMARY KEY,
-  jahr                 SMALLINT NOT NULL UNIQUE,
-  bienenvoelker        INT NOT NULL,
-  veraenderung_abs     INT NULL,
-  veraenderung_prozent DECIMAL(6,2) NULL,
-  phase                VARCHAR(20) NOT NULL,
-  niederschlag_mm      DECIMAL(6,1) NOT NULL
+                             id                   INT AUTO_INCREMENT PRIMARY KEY,
+                             jahr                 SMALLINT NOT NULL UNIQUE,
+                             bienenvoelker        INT NOT NULL,
+                             veraenderung_abs     INT NULL,
+                             veraenderung_prozent DECIMAL(6,2) NULL,
+                             phase                VARCHAR(20) NOT NULL,
+                             niederschlag_mm      DECIMAL(6,1) NOT NULL,
+                             sonnenscheindauer_h  DECIMAL(6,2) NULL,
+                             temperatur_c         DECIMAL(4,2) NULL,
+                             neuschnee_cm         DECIMAL(6,2) NULL
 );
