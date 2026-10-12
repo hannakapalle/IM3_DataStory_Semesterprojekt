@@ -2,249 +2,342 @@
     {
         "jahr": 1994,
         "bienenvoelker": 269938,
+        "sonnenscheindauer_h": 1626.01,
+        "niederschlag_mm": 1327.31,
+        "temperatur_c": 9.22,
+        "neuschnee_cm": 140.11,
         "veraenderung_abs": null,
         "veraenderung_prozent": null,
-        "phase": "Rückgang",
-        "niederschlag_mm": 1327.3
+        "phase": "Rückgang"
     },
     {
         "jahr": 1995,
         "bienenvoelker": 269180,
-        "veraenderung_abs": -758,
+        "sonnenscheindauer_h": 1715.24,
+        "niederschlag_mm": 1331.75,
+        "temperatur_c": 8.13,
+        "neuschnee_cm": 256.95,
+        "veraenderung_abs": -758.0,
         "veraenderung_prozent": -0.28,
-        "phase": "Rückgang",
-        "niederschlag_mm": 1331.8
+        "phase": "Rückgang"
     },
     {
         "jahr": 1996,
         "bienenvoelker": 269490,
-        "veraenderung_abs": 310,
+        "sonnenscheindauer_h": 1678.42,
+        "niederschlag_mm": 1194.52,
+        "temperatur_c": 7.45,
+        "neuschnee_cm": 190.91,
+        "veraenderung_abs": 310.0,
         "veraenderung_prozent": 0.12,
-        "phase": "Rückgang",
-        "niederschlag_mm": 1194.5
+        "phase": "Rückgang"
     },
     {
         "jahr": 1997,
         "bienenvoelker": 266438,
-        "veraenderung_abs": -3052,
+        "sonnenscheindauer_h": 1887.98,
+        "niederschlag_mm": 1134.9,
+        "temperatur_c": 8.5,
+        "neuschnee_cm": 147.11,
+        "veraenderung_abs": -3052.0,
         "veraenderung_prozent": -1.13,
-        "phase": "Rückgang",
-        "niederschlag_mm": 1134.9
+        "phase": "Rückgang"
     },
     {
         "jahr": 1998,
         "bienenvoelker": 259805,
-        "veraenderung_abs": -6633,
+        "sonnenscheindauer_h": 1823.49,
+        "niederschlag_mm": 1203.88,
+        "temperatur_c": 8.28,
+        "neuschnee_cm": 185.63,
+        "veraenderung_abs": -6633.0,
         "veraenderung_prozent": -2.49,
-        "phase": "Rückgang",
-        "niederschlag_mm": 1203.9
+        "phase": "Rückgang"
     },
     {
         "jahr": 1999,
         "bienenvoelker": 246278,
-        "veraenderung_abs": -13527,
+        "sonnenscheindauer_h": 1640.12,
+        "niederschlag_mm": 1571.35,
+        "temperatur_c": 8.25,
+        "neuschnee_cm": 300.63,
+        "veraenderung_abs": -13527.0,
         "veraenderung_prozent": -5.21,
-        "phase": "Rückgang",
-        "niederschlag_mm": 1571.4
+        "phase": "Rückgang"
     },
     {
         "jahr": 2000,
         "bienenvoelker": 235801,
-        "veraenderung_abs": -10477,
+        "sonnenscheindauer_h": 1778.82,
+        "niederschlag_mm": 1401.35,
+        "temperatur_c": 8.89,
+        "neuschnee_cm": 171.48,
+        "veraenderung_abs": -10477.0,
         "veraenderung_prozent": -4.25,
-        "phase": "Rückgang",
-        "niederschlag_mm": 1401.4
+        "phase": "Rückgang"
     },
     {
         "jahr": 2001,
         "bienenvoelker": 221573,
-        "veraenderung_abs": -14228,
+        "sonnenscheindauer_h": 1743.21,
+        "niederschlag_mm": 1447.09,
+        "temperatur_c": 8.36,
+        "neuschnee_cm": 201.24,
+        "veraenderung_abs": -14228.0,
         "veraenderung_prozent": -6.03,
-        "phase": "Rückgang",
-        "niederschlag_mm": 1447.1
+        "phase": "Rückgang"
     },
     {
         "jahr": 2002,
         "bienenvoelker": 214280,
-        "veraenderung_abs": -7293,
+        "sonnenscheindauer_h": 1698.82,
+        "niederschlag_mm": 1563.15,
+        "temperatur_c": 8.9,
+        "neuschnee_cm": 120.88,
+        "veraenderung_abs": -7293.0,
         "veraenderung_prozent": -3.29,
-        "phase": "Rückgang",
-        "niederschlag_mm": 1563.2
+        "phase": "Rückgang"
     },
     {
         "jahr": 2003,
         "bienenvoelker": 208008,
-        "veraenderung_abs": -6272,
+        "sonnenscheindauer_h": 2145.85,
+        "niederschlag_mm": 932.77,
+        "temperatur_c": 9.05,
+        "neuschnee_cm": 147.31,
+        "veraenderung_abs": -6272.0,
         "veraenderung_prozent": -2.93,
-        "phase": "Rückgang",
-        "niederschlag_mm": 932.8
+        "phase": "Rückgang"
     },
     {
         "jahr": 2004,
         "bienenvoelker": 207945,
-        "veraenderung_abs": -63,
+        "sonnenscheindauer_h": 1755.02,
+        "niederschlag_mm": 1171.51,
+        "temperatur_c": 8.29,
+        "neuschnee_cm": 178.88,
+        "veraenderung_abs": -63.0,
         "veraenderung_prozent": -0.03,
-        "phase": "Rückgang",
-        "niederschlag_mm": 1171.5
+        "phase": "Rückgang"
     },
     {
         "jahr": 2005,
         "bienenvoelker": 208091,
-        "veraenderung_abs": 146,
+        "sonnenscheindauer_h": 1897.36,
+        "niederschlag_mm": 1021.82,
+        "temperatur_c": 7.98,
+        "neuschnee_cm": 208.0,
+        "veraenderung_abs": 146.0,
         "veraenderung_prozent": 0.07,
-        "phase": "Rückgang",
-        "niederschlag_mm": 1021.8
+        "phase": "Rückgang"
     },
     {
         "jahr": 2006,
         "bienenvoelker": 202839,
-        "veraenderung_abs": -5252,
+        "sonnenscheindauer_h": 1873.61,
+        "niederschlag_mm": 1231.48,
+        "temperatur_c": 8.75,
+        "neuschnee_cm": 140.8,
+        "veraenderung_abs": -5252.0,
         "veraenderung_prozent": -2.52,
-        "phase": "Rückgang",
-        "niederschlag_mm": 1231.5
+        "phase": "Rückgang"
     },
     {
         "jahr": 2007,
         "bienenvoelker": 193355,
-        "veraenderung_abs": -9484,
+        "sonnenscheindauer_h": 1944.71,
+        "niederschlag_mm": 1279.09,
+        "temperatur_c": 8.94,
+        "neuschnee_cm": 160.43,
+        "veraenderung_abs": -9484.0,
         "veraenderung_prozent": -4.68,
-        "phase": "Rückgang",
-        "niederschlag_mm": 1279.1
+        "phase": "Rückgang"
     },
     {
         "jahr": 2008,
         "bienenvoelker": 180026,
-        "veraenderung_abs": -13329,
+        "sonnenscheindauer_h": 1787.2,
+        "niederschlag_mm": 1352.35,
+        "temperatur_c": 8.47,
+        "neuschnee_cm": 200.78,
+        "veraenderung_abs": -13329.0,
         "veraenderung_prozent": -6.89,
-        "phase": "Rückgang",
-        "niederschlag_mm": 1352.4
+        "phase": "Rückgang"
     },
     {
         "jahr": 2009,
         "bienenvoelker": 173814,
-        "veraenderung_abs": -6212,
+        "sonnenscheindauer_h": 1857.62,
+        "niederschlag_mm": 1175.11,
+        "temperatur_c": 8.72,
+        "neuschnee_cm": 187.06,
+        "veraenderung_abs": -6212.0,
         "veraenderung_prozent": -3.45,
-        "phase": "Rückgang",
-        "niederschlag_mm": 1175.1
+        "phase": "Rückgang"
     },
     {
         "jahr": 2010,
         "bienenvoelker": 165045,
-        "veraenderung_abs": -8769,
+        "sonnenscheindauer_h": 1679.82,
+        "niederschlag_mm": 1195.38,
+        "temperatur_c": 7.68,
+        "neuschnee_cm": 197.4,
+        "veraenderung_abs": -8769.0,
         "veraenderung_prozent": -5.05,
-        "phase": "Rückgang",
-        "niederschlag_mm": 1195.4
+        "phase": "Rückgang"
     },
     {
         "jahr": 2011,
         "bienenvoelker": 169391,
-        "veraenderung_abs": 4346,
+        "sonnenscheindauer_h": 2108.02,
+        "niederschlag_mm": 1037.49,
+        "temperatur_c": 9.28,
+        "neuschnee_cm": 124.15,
+        "veraenderung_abs": 4346.0,
         "veraenderung_prozent": 2.63,
-        "phase": "Rückgang",
-        "niederschlag_mm": 1037.5
+        "phase": "Rückgang"
     },
     {
         "jahr": 2012,
         "bienenvoelker": 161447,
-        "veraenderung_abs": -7944,
+        "sonnenscheindauer_h": 1900.24,
+        "niederschlag_mm": 1323.46,
+        "temperatur_c": 8.66,
+        "neuschnee_cm": 207.51,
+        "veraenderung_abs": -7944.0,
         "veraenderung_prozent": -4.69,
-        "phase": "Rückgang",
-        "niederschlag_mm": 1323.5
+        "phase": "Rückgang"
     },
     {
         "jahr": 2013,
         "bienenvoelker": 169391,
-        "veraenderung_abs": 7944,
+        "sonnenscheindauer_h": 1710.34,
+        "niederschlag_mm": 1268.38,
+        "temperatur_c": 8.15,
+        "neuschnee_cm": 170.25,
+        "veraenderung_abs": 7944.0,
         "veraenderung_prozent": 4.92,
-        "phase": "Erholung",
-        "niederschlag_mm": 1268.4
+        "phase": "Erholung"
     },
     {
         "jahr": 2014,
         "bienenvoelker": 168415,
-        "veraenderung_abs": -976,
+        "sonnenscheindauer_h": 1742.01,
+        "niederschlag_mm": 1367.28,
+        "temperatur_c": 9.4,
+        "neuschnee_cm": 135.56,
+        "veraenderung_abs": -976.0,
         "veraenderung_prozent": -0.58,
-        "phase": "Erholung",
-        "niederschlag_mm": 1367.3
+        "phase": "Erholung"
     },
     {
         "jahr": 2015,
         "bienenvoelker": 168965,
-        "veraenderung_abs": 550,
+        "sonnenscheindauer_h": 2015.25,
+        "niederschlag_mm": 1013.51,
+        "temperatur_c": 9.45,
+        "neuschnee_cm": 117.69,
+        "veraenderung_abs": 550.0,
         "veraenderung_prozent": 0.33,
-        "phase": "Erholung",
-        "niederschlag_mm": 1013.5
+        "phase": "Erholung"
     },
     {
         "jahr": 2016,
         "bienenvoelker": 172680,
-        "veraenderung_abs": 3715,
+        "sonnenscheindauer_h": 1770.95,
+        "niederschlag_mm": 1304.49,
+        "temperatur_c": 8.88,
+        "neuschnee_cm": 131.42,
+        "veraenderung_abs": 3715.0,
         "veraenderung_prozent": 2.2,
-        "phase": "Erholung",
-        "niederschlag_mm": 1304.5
+        "phase": "Erholung"
     },
     {
         "jahr": 2017,
         "bienenvoelker": 174986,
-        "veraenderung_abs": 2306,
+        "sonnenscheindauer_h": 1981.06,
+        "niederschlag_mm": 1244.48,
+        "temperatur_c": 9.02,
+        "neuschnee_cm": 190.94,
+        "veraenderung_abs": 2306.0,
         "veraenderung_prozent": 1.34,
-        "phase": "Erholung",
-        "niederschlag_mm": 1244.5
+        "phase": "Erholung"
     },
     {
         "jahr": 2018,
         "bienenvoelker": 179704,
-        "veraenderung_abs": 4718,
+        "sonnenscheindauer_h": 1950.42,
+        "niederschlag_mm": 1113.83,
+        "temperatur_c": 9.8,
+        "neuschnee_cm": 139.33,
+        "veraenderung_abs": 4718.0,
         "veraenderung_prozent": 2.7,
-        "phase": "Erholung",
-        "niederschlag_mm": 1113.8
+        "phase": "Erholung"
     },
     {
         "jahr": 2019,
         "bienenvoelker": 183170,
-        "veraenderung_abs": 3466,
+        "sonnenscheindauer_h": 1965.36,
+        "niederschlag_mm": 1312.27,
+        "temperatur_c": 9.38,
+        "neuschnee_cm": 214.48,
+        "veraenderung_abs": 3466.0,
         "veraenderung_prozent": 1.93,
-        "phase": "Erholung",
-        "niederschlag_mm": 1312.3
+        "phase": "Erholung"
     },
     {
         "jahr": 2020,
         "bienenvoelker": 186827,
-        "veraenderung_abs": 3657,
-        "veraenderung_prozent": 2,
-        "phase": "Erholung",
-        "niederschlag_mm": 1183.6
+        "sonnenscheindauer_h": 2083.58,
+        "niederschlag_mm": 1183.59,
+        "temperatur_c": 9.62,
+        "neuschnee_cm": 139.33,
+        "veraenderung_abs": 3657.0,
+        "veraenderung_prozent": 2.0,
+        "phase": "Erholung"
     },
     {
         "jahr": 2021,
         "bienenvoelker": 196451,
-        "veraenderung_abs": 9624,
+        "sonnenscheindauer_h": 1880.29,
+        "niederschlag_mm": 1305.77,
+        "temperatur_c": 8.44,
+        "neuschnee_cm": 213.03,
+        "veraenderung_abs": 9624.0,
         "veraenderung_prozent": 5.15,
-        "phase": "Erholung",
-        "niederschlag_mm": 1305.8
+        "phase": "Erholung"
     },
     {
         "jahr": 2022,
         "bienenvoelker": 192917,
-        "veraenderung_abs": -3534,
+        "sonnenscheindauer_h": 2179.57,
+        "niederschlag_mm": 1029.72,
+        "temperatur_c": 10.18,
+        "neuschnee_cm": 122.99,
+        "veraenderung_abs": -3534.0,
         "veraenderung_prozent": -1.8,
-        "phase": "Erholung",
-        "niederschlag_mm": 1029.7
+        "phase": "Erholung"
     },
     {
         "jahr": 2023,
         "bienenvoelker": 198074,
-        "veraenderung_abs": 5157,
+        "sonnenscheindauer_h": 1923.84,
+        "niederschlag_mm": 1392.55,
+        "temperatur_c": 10.12,
+        "neuschnee_cm": 174.67,
+        "veraenderung_abs": 5157.0,
         "veraenderung_prozent": 2.67,
-        "phase": "Erholung",
-        "niederschlag_mm": 1392.6
+        "phase": "Erholung"
     },
     {
         "jahr": 2024,
         "bienenvoelker": 203875,
-        "veraenderung_abs": 5801,
+        "sonnenscheindauer_h": 1670.47,
+        "niederschlag_mm": 1335.8,
+        "temperatur_c": 9.88,
+        "neuschnee_cm": 166.76,
+        "veraenderung_abs": 5801.0,
         "veraenderung_prozent": 2.93,
-        "phase": "Erholung",
-        "niederschlag_mm": 1335.8
+        "phase": "Erholung"
     }
 ]
