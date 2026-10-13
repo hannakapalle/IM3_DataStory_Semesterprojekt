@@ -7,109 +7,177 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<main>
-    <header>
+
+<!-- Die Biene, die durch die Einführung fliegt -->
+<div id="flugbiene" class="flugbiene" aria-hidden="true">🐝</div>
+
+<header class="hero">
+    <div class="hero-inhalt">
         <p class="kicker">Datastory · IM3</p>
         <h1>Wo sind die Bienen hin?</h1>
         <p class="lead">
-            Wie hat sich der Bienenbestand in der Schweiz von 1994 bis 2024 entwickelt –
-            und welchen Einfluss hatten Klima-Faktoren wie Niederschlag, Sonnenschein, Temperatur und Neuschnee darauf?
+            1994 gab es in der Schweiz fast 270'000 Bienenvölker. 18 Jahre später waren es
+            noch rund 160'000. Was ist passiert, und wie geht es den Bienen heute?
         </p>
-    </header>
+        <p>
+            Wir sind vier Studierende und haben dazu zwei Datensätze zusammengeführt: die Zahl der
+            Bienenvölker in der Schweiz von 1994 bis 2024 (FAOSTAT) und die Klimadaten derselben
+            Jahre (MeteoSchweiz/BFS). Zuerst schauen wir uns an, wie sich der Bestand entwickelt hat.
+            Danach fragen wir: Hat das Wetter etwas damit zu tun?
+        </p>
+        <a class="weiter" href="#bestand">Zur Geschichte ↓</a>
+    </div>
+</header>
+
+<main>
 
     <!-- Kennzahlen -->
-    <section class="kennzahlen">
+    <section class="kennzahlen" aria-label="Kennzahlen">
         <div><strong id="kz-start">–</strong><span>Völker 1994</span></div>
-        <div><strong id="kz-tief">–</strong><span id="kz-tief-label">Tiefpunkt</span></div>
-        <div><strong id="kz-ende">–</strong><span>Völker 2024</span></div>
+        <div class="rot"><strong id="kz-tief">–</strong><span id="kz-tief-label">Tiefpunkt</span></div>
+        <div class="gruen"><strong id="kz-ende">–</strong><span id="kz-ende-label">Völker 2024</span></div>
+        <div><strong id="kz-verlust">–</strong><span id="kz-verlust-label">Verlust bis zum Tiefpunkt</span></div>
     </section>
 
-    <!-- 1. Niederschlag -->
-    <section>
-        <h2>1. Bienenvölker und Niederschlag pro Jahr</h2>
-        <p class="unterzeile">Balken: Anzahl Bienenvölker · Linie: Jahresniederschlag (mm)</p>
+    <!-- 1. Der Bienenbestand -->
+    <section id="bestand" class="karte">
+        <p class="schritt">Teil 1 · Der Bestand</p>
+        <h2 id="bestand-titel">Fast 20 Jahre Rückgang, dann die Wende</h2>
+        <p class="unterzeile">Anzahl Bienenvölker in der Schweiz pro Jahr, 1994–2024</p>
 
-        <div class="filter" role="group" aria-label="Phase wählen">
-            <button data-phase="" class="aktiv">Alle Jahre</button>
-            <button data-phase="rueckgang">Rückgang</button>
-            <button data-phase="erholung">Erholung</button>
+        <div class="steuerung">
+            <div class="filter" role="group" aria-label="Ansicht wählen">
+                <button data-ansicht="bestand" class="aktiv">Bestand</button>
+                <button data-ansicht="veraenderung">Veränderung zum Vorjahr</button>
+            </div>
+            <div class="filter" role="group" aria-label="Phase wählen">
+                <button data-phase="" class="aktiv">Alle Jahre</button>
+                <button data-phase="Rückgang">Rückgang</button>
+                <button data-phase="Erholung">Erholung</button>
+            </div>
         </div>
 
-        <div class="chart"><canvas id="chart-bienen"></canvas></div>
-        <p id="detail" class="detail">Klickt auf ein Jahr, um die Details zu sehen.</p>
-
-        <div class="story-analysis">
-            <h3>Analyse: Der Regeneffekt</h3>
-            <p>
-                Extrem verregnete Jahre (wie 1999 mit 1'571 mm oder 2002 mit 1'563 mm) fallen häufig mit stärkeren Verlusten bei den Bienenvölkern zusammen. Dauerregen verhindert den Nektarflug und führt dazu, dass Völker auf ihre Vorräte zurückgreifen müssen. Dennoch erklärt der Niederschlag alleine nicht den langjährigen Rückgang bis 2012.
-            </p>
+        <div class="legende">
+            <span><i class="punkt rot"></i><span id="legende-rot">Rückgang (bis zum Tiefpunkt)</span></span>
+            <span><i class="punkt gruen"></i><span id="legende-gruen">Erholung (danach)</span></span>
         </div>
+
+        <div class="chart chart-gross"><canvas id="chart-bestand"></canvas></div>
+        <p id="detail" class="detail">Fahrt über ein Jahr oder tippt darauf, um die Details zu sehen.</p>
+
+        <div class="analyse" id="analyse-bestand"></div>
     </section>
 
-    <!-- 2. Sonnenscheindauer -->
-    <section>
-        <h2>2. Bienenvölker und Sonnenscheindauer</h2>
-        <p class="unterzeile">Balken: Anzahl Bienenvölker · Linie: Jährliche Sonnenscheindauer (in Stunden)</p>
+    <!-- 2. Warum Bienen wichtig sind -->
+    <section class="wichtig">
+        <p class="schritt">Teil 2 · Warum uns das etwas angeht</p>
+        <h2>Ohne Bienen wird es still auf dem Teller</h2>
+        <p class="text-gross">
+            Bienen machen Honig, aber ihre wichtigste Arbeit ist eine andere. Wenn eine Biene von Blüte
+            zu Blüte fliegt, trägt sie Blütenstaub mit. Erst so können viele Pflanzen Früchte und
+            Samen bilden.
+        </p>
+        <div class="fakten">
+            <article>
+                <span class="icon" aria-hidden="true">🌸</span>
+                <h3>Bestäubung</h3>
+                <p>Ein Bienenvolk besucht an einem Sommertag Millionen von Blüten. Obstbäume, Raps und Beeren sind besonders auf Bienen angewiesen.</p>
+            </article>
+            <article>
+                <span class="icon" aria-hidden="true">🍎</span>
+                <h3>Unser Essen</h3>
+                <p>Rund drei Viertel der wichtigsten Nutzpflanzen weltweit profitieren von der Bestäubung durch Tiere, vor allem durch Bienen.</p>
+            </article>
+            <article>
+                <span class="icon" aria-hidden="true">🌍</span>
+                <h3>Artenvielfalt</h3>
+                <p>Auch viele Wildpflanzen brauchen Bestäuber. Von diesen Pflanzen leben wiederum Vögel, Insekten und andere Tiere.</p>
+            </article>
+        </div>
+        <p class="text-gross">
+            Wenn Bienenvölker verschwinden, betrifft das also nicht nur Imkerinnen und Imker,
+            sondern uns alle. Deshalb wollten wir wissen: <strong>Liegt es am Wetter?</strong>
+            Auf den nächsten Seiten vergleichen wir den Bestand mit vier Klimawerten.
+        </p>
+    </section>
+
+    <!-- 3. Niederschlag -->
+    <section class="karte wetter" data-wetter="regen">
+        <canvas class="wetter-ebene" aria-hidden="true"></canvas>
+        <p class="schritt">Teil 3 · Regen</p>
+        <h2>Machen nasse Jahre den Bienen zu schaffen?</h2>
+        <p class="unterzeile">Jahresniederschlag in mm. Die Farbe zeigt, ob die Zahl der Bienenvölker im selben Jahr gesunken (rot) oder gestiegen (grün) ist. 1994 (grau) hat kein Vorjahr.</p>
+        <div class="jahr-anzeige" id="anzeige-regen"></div>
+        <div class="chart"><canvas id="chart-regen"></canvas></div>
+        <div class="analyse" id="analyse-regen"></div>
+    </section>
+
+    <!-- 4. Sonnenschein -->
+    <section class="karte wetter" data-wetter="sonne">
+        <div class="sonne" id="sonne" aria-hidden="true">☀️</div>
+        <p class="schritt">Teil 4 · Sonne</p>
+        <h2>Bringt mehr Sonne mehr Bienen?</h2>
+        <p class="unterzeile">Jeder Punkt ist ein Jahr. Je weiter rechts, desto sonniger war das Jahr. Je weiter oben, desto stärker ist die Zahl der Bienenvölker gewachsen.</p>
+        <div class="legende">
+            <span><i class="punkt rot"></i>Jahr in der Rückgangsphase</span>
+            <span><i class="punkt gruen"></i>Jahr in der Erholungsphase</span>
+        </div>
+        <div class="jahr-anzeige" id="anzeige-sonne"></div>
         <div class="chart"><canvas id="chart-sonne"></canvas></div>
-
-        <div class="story-analysis">
-            <h3>Analyse: Flugwetter & Tracht</h3>
-            <p>
-                Mehr Sonnenstunden (z. B. im Rekordjahr 2003 mit 2'145 Stunden oder 2022 mit 2'179 Stunden) bieten den Bienen ideale Bedingungen für die Nahrungssuche. In sonnenreichen Jahren erholen sich Völker im Folgejahr oft besser. Die Sonnenstunden wirken somit als positiver Beschleuniger für die Völkerentwicklung.
-            </p>
-        </div>
+        <div class="analyse" id="analyse-sonne"></div>
     </section>
 
-    <!-- 3. Temperatur -->
-    <section>
-        <h2>3. Bienenvölker und Jahrestemperatur</h2>
-        <p class="unterzeile">Balken: Anzahl Bienenvölker · Linie: Mittlere Jahrestemperatur (°C)</p>
-        <div class="chart"><canvas id="chart-temp"></canvas></div>
-
-        <div class="story-analysis">
-            <h3>Analyse: Die Klimaerwärmung im Blick</h3>
-            <p>
-                Seit 2013 liegt die mittlere Jahrestemperatur in der Schweiz konstant über 8.8 °C bis hin zu Spitzenwerten über 10 °C (2022/2023). Dieser Wärmetrend fällt zeitlich exakt mit der stabilen Erholungsphase der Bienenvölker zusammen. Mildere Frühjahre erleichtern die Brutentwicklung, erhöhen jedoch zeitgleich das Risiko einer früheren Ausbreitung von Parasiten wie der Varroamilbe.
-            </p>
-        </div>
+    <!-- 5. Temperatur -->
+    <section class="karte wetter" data-wetter="temperatur">
+        <div class="thermometer" aria-hidden="true"><div id="thermo-fuellung"></div></div>
+        <p class="schritt">Teil 5 · Temperatur</p>
+        <h2>Wärmere Jahre, mehr Bienen?</h2>
+        <p class="unterzeile">Mittlere Jahrestemperatur in °C. Die Punkte sind nach Phase eingefärbt, die gestrichelten Linien zeigen den Durchschnitt jeder Phase.</p>
+        <div class="jahr-anzeige" id="anzeige-temperatur"></div>
+        <div class="chart"><canvas id="chart-temperatur"></canvas></div>
+        <div class="analyse" id="analyse-temperatur"></div>
     </section>
 
-    <!-- 4. Neuschnee -->
-    <section>
-        <h2>4. Bienenvölker und Neuschneemengen</h2>
-        <p class="unterzeile">Balken: Anzahl Bienenvölker · Linie: Neuschneemengen (Jahressumme in cm)</p>
+    <!-- 6. Neuschnee -->
+    <section class="karte wetter winter" data-wetter="schnee">
+        <canvas class="wetter-ebene" aria-hidden="true"></canvas>
+        <p class="schritt">Teil 6 · Schnee</p>
+        <h2>Brauchen Bienen einen richtigen Winter?</h2>
+        <p class="unterzeile">Neuschnee pro Jahr in cm. Hellere Balken: Rückgangsphase, dunklere Balken: Erholungsphase. Fahrt über ein Jahr: So stark schneit es in diesem Kasten.</p>
+        <div class="jahr-anzeige" id="anzeige-schnee"></div>
         <div class="chart"><canvas id="chart-schnee"></canvas></div>
-
-        <div class="story-analysis">
-            <h3>Analyse: Der Winterruhe-Effekt</h3>
-            <p>
-                In den 1990er-Jahren gab es noch Neuschneesummen von über 250–300 cm (z. B. 1999), während in der Erholungsphase ab 2013 die Schneemengen spürbar abgenommen haben. Ausreichend Kälte und Schnee garantieren den Bienen eine ungestörte Winterruhe – feuchtkalte Übergangszeiten ohne echten Schnee belasten die Vorräte hingegen stärker.
-            </p>
-        </div>
+        <div class="analyse" id="analyse-schnee"></div>
     </section>
 
-    <!-- 5. Gesamtschau & Synthese -->
-    <section>
-        <h2>5. Gesamtschau: Welchen Einfluss hat das Klima wirklich?</h2>
-        <p class="unterzeile">Alle Faktoren im direkten Vergleich über die Jahre 1994–2024</p>
-        <div class="chart"><canvas id="chart-alle"></canvas></div>
+    <!-- 7. Gesamtschau -->
+    <section class="karte">
+        <p class="schritt">Teil 7 · Gesamtschau</p>
+        <h2>Welchen Einfluss hat das Wetter wirklich?</h2>
 
-        <div class="story-analysis highlight">
-            <h3>Fazit der Gesamtanalyse</h3>
-            <p>
-                Die Gegenüberstellung aller Daten zeigt klar: <strong>Das Klima ist ein wichtiger Einflussfaktor, aber nicht der alleinige Grund für den historischen Bienenrückgang.</strong>
-            </p>
-            <ul>
-                <li><strong>Kurzfristig (Wetter):</strong> Extremwetterjahre (sehr nass, extrem kalt) verursachen spürbare Schwankungen von Jahr zu Jahr.</li>
-                <li><strong>Langfristig (Klima):</strong> Der Trend zu höheren Temperaturen und weniger Schnee begünstigt den Früheinschlag der Vegetation und stützt die Erholung der Völker seit 2013.</li>
-                <li><strong>Der blinde Fleck:</strong> Die Wende ab 2013 von der Rückgangs- in die Erholungsphase hängt maßgeblich mit nicht-klimatischen Faktoren zusammen – darunter verbessertes Imkereimanagement, staatliche Förderungen sowie eine gezieltere Bekämpfung der Varroamilbe.</li>
-            </ul>
+        <div class="zwei-spalten">
+            <div>
+                <h3>Wie anders war das Wetter in der Erholungsphase?</h3>
+                <p class="unterzeile">Durchschnitt der Erholungsphase im Vergleich zur Rückgangsphase, in Prozent</p>
+                <div class="chart chart-klein"><canvas id="chart-vergleich"></canvas></div>
+            </div>
+            <div>
+                <h3>Wie eng hängt das Wetter mit den Bienen zusammen?</h3>
+                <p class="unterzeile">Zusammenhang mit der Veränderung der Bienenvölker im selben Jahr (0 = kein Zusammenhang, ±1 = perfekter Zusammenhang)</p>
+                <div class="chart chart-klein"><canvas id="chart-zusammenhang"></canvas></div>
+            </div>
         </div>
+
+        <div class="analyse fazit" id="analyse-fazit"></div>
     </section>
 
     <section class="grenzen">
         <h2>Was diese Daten nicht sagen</h2>
-        <p>Niederschlag und Temperatur zeigen nur äußere Rahmenbedingungen. Wichtige Einflussfaktoren wie Pestizideinsatz, Monokulturen, Varroa-Befall und das Verhalten der Imkerinnen und Imker sind in diesen Klimadaten nicht enthalten.</p>
+        <ul>
+            <li>Gezählt werden Bienenvölker, nicht einzelne Bienen. Wildbienen fehlen ganz.</li>
+            <li>Die Klimawerte sind ein Durchschnitt mehrerer Messstationen. Das Wetter vor Ort kann ganz anders gewesen sein.</li>
+            <li>Wenn zwei Dinge gleichzeitig passieren, heisst das nicht, dass das eine das andere verursacht.</li>
+            <li>Wichtige Einflüsse wie die Varroamilbe, Pestizide, Monokulturen und die Zahl der Imkerinnen und Imker stecken nicht in diesen Daten.</li>
+        </ul>
     </section>
 
     <footer>
