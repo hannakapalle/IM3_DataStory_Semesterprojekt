@@ -1,17 +1,4 @@
 <?php
-/**
- * Unload – JSON-Endpunkt für die Story-Seite.
- *
- * Antwortet auf:
- *
- *   GET unload.php                  alle Jahre 1994–2024
- *   GET unload.php?year=1994        nur ein Jahr
- *   GET unload.php?phase=rueckgang  nur die Jahre einer Phase
- *                                   (rueckgang, rückgang oder erholung)
- *
- * Ist die Datenbank nicht erreichbar, fällt script.js auf
- * data/bienenjahre.json zurück.
- */
 
 header('Content-Type: application/json; charset=utf-8');
 
@@ -45,7 +32,7 @@ function normalizeJahr(array $row): array
 $year = trim($_GET['year'] ?? '');
 $phase = mb_strtolower(trim($_GET['phase'] ?? ''));
 
-// Erlaubte Schreibweisen in der URL => Wert in der Datenbank
+// Erlaubte Schreibweisen in der URL
 $phasen = [
     'rueckgang' => 'Rückgang',
     'rückgang' => 'Rückgang',
