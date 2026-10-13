@@ -9,9 +9,12 @@
     --text-main: #2d3748;
     --text-muted: #718096;
     --accent-yellow: #e5a93c;
+    --honig-dunkel: #b7791f;
     --accent-brown: #c85a28;
     --accent-green: #4e8536;
+    --blau: #2b6cb0;
     --border-color: #edf2f7;
+    --nav-hoehe: 60px;
 
     /* Mauszeiger: eine kleine Biene */
     --bienen-zeiger: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='32' height='32'><text x='2' y='24' font-size='24'>🐝</text></svg>") 6 6, auto;
@@ -25,6 +28,7 @@
 
 html {
     scroll-behavior: smooth;
+    scroll-padding-top: calc(var(--nav-hoehe) + 12px);
 }
 
 body {
@@ -36,52 +40,169 @@ body {
     overflow-x: hidden;
 }
 
-a, button, canvas {
+a, button, canvas, input {
     cursor: var(--bienen-zeiger);
 }
 
 main {
-    max-width: 1000px;
+    max-width: 1080px;
     margin: 0 auto;
     padding: 0 1rem 2rem;
 }
 
-/* 2. Einführung mit Wabenmuster */
-.hero {
-    position: relative;
-    min-height: 88vh;
+.rot-text { color: var(--accent-brown); }
+.gruen-text { color: var(--accent-green); }
+.blau-text { color: var(--blau); }
+
+/* 2. Kapitel-Navigation */
+.kapitel-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: var(--nav-hoehe);
+    z-index: 50;
     display: flex;
     align-items: center;
-    padding: 4rem 1rem;
+    gap: 1rem;
+    padding: 0 1rem;
+    background: rgba(253, 251, 247, 0.92);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid #f3e6c4;
+}
+
+.marke {
+    font-weight: 800;
+    color: #1a202c;
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+.kapitel-nav ul {
+    list-style: none;
+    display: flex;
+    gap: 0.25rem;
+    margin-left: auto;
+    overflow-x: auto;
+    scrollbar-width: none;
+}
+
+.kapitel-nav ul::-webkit-scrollbar { display: none; }
+
+.kapitel-nav li a {
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.35rem 0.7rem;
+    border-radius: 999px;
+    font-size: 0.85rem;
+    color: #4a5568;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: background 0.2s ease, color 0.2s ease;
+}
+
+.kapitel-nav li a b { font-weight: 600; }
+.kapitel-nav li a:hover { background: #fdf0d2; }
+
+.kapitel-nav li a.aktiv {
+    background: var(--accent-yellow);
+    color: #fff;
+}
+
+.fortschritt {
+    position: absolute;
+    left: 0;
+    bottom: -1px;
+    height: 3px;
+    width: 0;
+    background: linear-gradient(90deg, var(--accent-yellow), var(--accent-brown));
+}
+
+/* 3. Einführung mit Wabenmuster und Bienenschwarm */
+.hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding: calc(var(--nav-hoehe) + 3rem) 1rem 6rem;
     background-color: #fff8e6;
     background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='56' height='98' viewBox='0 0 56 98'><path d='M28 0 L56 16 L56 49 L28 65 L0 49 L0 16 Z M28 65 L28 98' fill='none' stroke='%23f2d48f' stroke-width='2'/></svg>");
     overflow: hidden;
 }
 
-.hero-inhalt {
-    max-width: 760px;
-    margin: 0 auto;
-    background: rgba(255, 255, 255, 0.88);
-    padding: 2.5rem;
-    border-radius: 16px;
-    box-shadow: 0 10px 40px rgba(200, 140, 30, 0.15);
-    position: relative;
-    z-index: 1;
-}
-
-.hero-inhalt p + p {
-    margin-top: 1rem;
+.schwarm {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 2;
 }
 
 .flugbiene {
     position: absolute;
     top: 0;
     left: 0;
-    font-size: 2.4rem;
-    z-index: 2;
-    pointer-events: none;
     will-change: transform;
+    filter: drop-shadow(0 3px 3px rgba(0, 0, 0, 0.15));
 }
+
+.hero-inhalt {
+    max-width: 760px;
+    margin: 0 auto;
+    background: rgba(255, 255, 255, 0.9);
+    padding: 2.5rem;
+    border-radius: 20px;
+    box-shadow: 0 20px 60px rgba(200, 140, 30, 0.18);
+    position: relative;
+    z-index: 1;
+}
+
+.hero-inhalt p + p { margin-top: 1rem; }
+
+.honig-text {
+    background: linear-gradient(90deg, var(--accent-yellow), var(--accent-brown));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.fahrplan-titel {
+    font-weight: 700;
+    margin-top: 1.5rem !important;
+}
+
+.fahrplan {
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 0.6rem;
+    margin-top: 0.6rem;
+    counter-reset: schritt;
+}
+
+.fahrplan a {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    height: 100%;
+    padding: 0.75rem;
+    border-radius: 12px;
+    background: #fff8e6;
+    border: 1px solid #f3e6c4;
+    color: #2d3748;
+    font-size: 0.9rem;
+    font-weight: 600;
+    line-height: 1.35;
+    text-decoration: none;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.fahrplan a:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 16px rgba(200, 140, 30, 0.2);
+}
+
+.fahrplan span { font-size: 1.5rem; }
 
 .weiter {
     display: inline-block;
@@ -90,31 +211,33 @@ main {
     color: #fff;
     font-weight: 700;
     text-decoration: none;
-    padding: 0.6rem 1.4rem;
+    padding: 0.7rem 1.6rem;
     border-radius: 999px;
-    transition: transform 0.2s ease;
+    box-shadow: 0 4px 0 var(--honig-dunkel);
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
 }
 
 .weiter:hover {
     transform: translateY(2px);
+    box-shadow: 0 2px 0 var(--honig-dunkel);
 }
 
-/* 3. Typografie */
+/* 4. Typografie */
 .kicker,
 .schritt {
-    font-size: 0.85rem;
+    font-size: 0.8rem;
     font-weight: 700;
     text-transform: uppercase;
-    letter-spacing: 0.05em;
-    color: var(--accent-yellow);
+    letter-spacing: 0.06em;
+    color: var(--honig-dunkel);
     margin-bottom: 0.25rem;
 }
 
 h1 {
-    font-size: clamp(2.2rem, 6vw, 3.4rem);
+    font-size: clamp(2.3rem, 7vw, 3.8rem);
     font-weight: 800;
     color: #1a202c;
-    line-height: 1.1;
+    line-height: 1.05;
     margin-bottom: 1rem;
 }
 
@@ -125,11 +248,11 @@ p.lead {
 }
 
 h2 {
-    font-size: clamp(1.4rem, 3.5vw, 1.8rem);
+    font-size: clamp(1.45rem, 3.5vw, 2rem);
     font-weight: 800;
     color: #1a202c;
-    line-height: 1.25;
-    margin-bottom: 0.4rem;
+    line-height: 1.2;
+    margin-bottom: 0.75rem;
 }
 
 h3 {
@@ -141,7 +264,8 @@ h3 {
 .unterzeile {
     font-size: 0.95rem;
     color: var(--text-muted);
-    margin-bottom: 1.25rem;
+    margin-bottom: 1rem;
+    max-width: 760px;
 }
 
 .text-gross {
@@ -149,12 +273,12 @@ h3 {
     max-width: 720px;
 }
 
-/* 4. Kennzahlen-Kacheln */
+/* 5. Kennzahlen-Kacheln */
 .kennzahlen {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 1.25rem;
-    margin: -3rem 0 3rem;
+    margin: -3.5rem 0 3rem;
     position: relative;
     z-index: 3;
 }
@@ -162,9 +286,9 @@ h3 {
 .kennzahlen > div {
     background: var(--card-bg);
     padding: 1.25rem 1.5rem;
-    border-left: 4px solid var(--accent-yellow);
-    border-radius: 0 8px 8px 0;
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+    border-left: 5px solid var(--accent-yellow);
+    border-radius: 0 12px 12px 0;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.07);
     display: flex;
     flex-direction: column;
 }
@@ -186,7 +310,7 @@ h3 {
     color: var(--text-muted);
 }
 
-/* 5. Abschnitte */
+/* 6. Kapitel und Karten */
 section {
     margin-bottom: 3rem;
     transition: opacity 0.8s ease, transform 0.8s ease;
@@ -200,9 +324,9 @@ section.versteckt {
 .karte {
     position: relative;
     background: var(--card-bg);
-    padding: 2rem;
-    border-radius: 12px;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+    padding: 2.25rem;
+    border-radius: 20px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.05);
     overflow: hidden;
 }
 
@@ -212,55 +336,227 @@ section.versteckt {
     z-index: 1;
 }
 
+.kapitel-kopf {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 0.25rem;
+    padding-right: 4rem;
+}
+
+.kapitel-kopf h2 { margin-bottom: 0; }
+
+.kapitel-icon {
+    flex: 0 0 auto;
+    display: grid;
+    place-items: center;
+    width: 64px;
+    height: 72px;
+    font-size: 2rem;
+    background: #fff3d6;
+    clip-path: polygon(50% 0, 100% 25%, 100% 75%, 50% 100%, 0 75%, 0 25%);
+}
+
+/* «Kurz gesagt»-Kasten */
+.kurz {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    background: #fffaf0;
+    border: 1px dashed #f0c674;
+    border-radius: 12px;
+    padding: 0.8rem 1rem;
+    margin: 1rem 0 1.25rem;
+    max-width: 820px;
+}
+
+.kurz p { font-size: 1rem; }
+
+.urteil {
+    flex: 0 0 auto;
+    display: inline-block;
+    padding: 0.2rem 0.75rem;
+    border-radius: 999px;
+    font-size: 0.8rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: #fff;
+}
+
+.urteil.kaum { background: #a0aec0; }
+.urteil.teilweise { background: var(--accent-yellow); }
+.urteil.deutlich { background: var(--accent-green); }
+
 .chart {
     position: relative;
     height: 380px;
     width: 100%;
-    margin-top: 1rem;
+    margin-top: 0.75rem;
 }
 
-.chart-gross { height: 440px; }
-.chart-klein { height: 260px; }
+/* 7. Kapitel 1: Zeitreise und Wabe */
+.zeitreise {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    background: #fff8e6;
+    border-radius: 999px;
+    padding: 0.5rem 1.25rem 0.5rem 0.5rem;
+    margin-bottom: 1.5rem;
+}
 
-/* 6. Knöpfe und Legende */
+.abspielen {
+    flex: 0 0 auto;
+    width: 44px;
+    height: 44px;
+    border: none;
+    border-radius: 50%;
+    background: var(--accent-yellow);
+    color: #fff;
+    font-size: 1rem;
+    box-shadow: 0 3px 0 var(--honig-dunkel);
+}
+
+.abspielen:active { transform: translateY(2px); box-shadow: 0 1px 0 var(--honig-dunkel); }
+
+#jahr-regler {
+    flex: 1;
+    accent-color: var(--accent-yellow);
+    height: 6px;
+}
+
+#regler-jahr {
+    font-size: 1.6rem;
+    font-weight: 800;
+    font-variant-numeric: tabular-nums;
+    min-width: 4ch;
+    text-align: right;
+}
+
+.bestand-raster {
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    gap: 2rem;
+    align-items: start;
+}
+
+.wabe-panel {
+    text-align: center;
+    background: #fffaf0;
+    border-radius: 16px;
+    padding: 1.25rem 1rem;
+}
+
+.wabe {
+    --zelle-b: 34px;
+    --zelle-h: 39px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.wabe-reihe {
+    display: flex;
+    gap: 3px;
+    margin-top: calc(var(--zelle-h) * -0.22);
+}
+
+.wabe-reihe:first-child { margin-top: 0; }
+.wabe-reihe:nth-child(even) { transform: translateX(calc((var(--zelle-b) + 3px) / 2)); }
+
+.zelle {
+    --fuellung: 100%;
+    width: var(--zelle-b);
+    height: var(--zelle-h);
+    clip-path: polygon(50% 0, 100% 25%, 100% 75%, 50% 100%, 0 75%, 0 25%);
+    background: linear-gradient(to top, var(--accent-yellow) var(--fuellung), #f4e7c8 var(--fuellung));
+    transition: transform 0.3s ease;
+}
+
+.zelle.leer {
+    background: #f4e7c8;
+    transform: scale(0.85);
+}
+
+.wabe-zahl strong {
+    font-size: 2rem;
+    font-weight: 800;
+    font-variant-numeric: tabular-nums;
+}
+
+.wabe-info { margin-top: 0.25rem; font-weight: 600; }
+.wabe-info .minus { color: var(--accent-brown); }
+.wabe-info .plus { color: var(--accent-green); }
+
+.phase-marke {
+    display: inline-block;
+    padding: 0.05rem 0.6rem;
+    border-radius: 999px;
+    font-size: 0.8rem;
+    color: #fff;
+}
+
+.phase-marke.rot { background: var(--accent-brown); }
+.phase-marke.gruen { background: var(--accent-green); }
+
+.wabe-legende {
+    margin-top: 0.75rem;
+    font-size: 0.8rem;
+    color: var(--text-muted);
+}
+
+.mini-zelle {
+    display: inline-block;
+    width: 12px;
+    height: 14px;
+    vertical-align: -2px;
+    background: var(--accent-yellow);
+    clip-path: polygon(50% 0, 100% 25%, 100% 75%, 50% 100%, 0 75%, 0 25%);
+}
+
+/* 8. Knöpfe und Legende */
 .steuerung {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
     gap: 0.75rem;
-    margin-bottom: 1rem;
+    margin-bottom: 0.75rem;
 }
 
 .filter {
-    display: flex;
+    display: inline-flex;
     flex-wrap: wrap;
-    gap: 0.5rem;
+    background: #f7f3ea;
+    border-radius: 999px;
+    padding: 3px;
 }
 
 .filter button {
-    background: #ffffff;
-    border: 1px solid #cbd5e0;
-    padding: 0.4rem 1rem;
-    border-radius: 20px;
-    font-size: 0.875rem;
+    background: transparent;
+    border: none;
+    padding: 0.35rem 0.9rem;
+    border-radius: 999px;
+    font-size: 0.85rem;
     font-weight: 600;
     color: #4a5568;
     transition: all 0.2s ease;
 }
 
-.filter button:hover { background: #fdf6e7; }
+.filter button:hover { color: #1a202c; }
 
 .filter button.aktiv {
-    background: var(--accent-yellow);
-    color: #ffffff;
-    border-color: var(--accent-yellow);
+    background: #fff;
+    color: #1a202c;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.12);
 }
 
 .legende {
     display: flex;
     flex-wrap: wrap;
     gap: 1.25rem;
-    font-size: 0.875rem;
+    font-size: 0.85rem;
     color: var(--text-muted);
 }
 
@@ -275,22 +571,108 @@ section.versteckt {
 .punkt.rot { background: var(--accent-brown); }
 .punkt.gruen { background: var(--accent-green); }
 
-.detail {
-    font-size: 0.95rem;
-    color: var(--text-muted);
-    margin-top: 1rem;
-    min-height: 1.6em;
-}
-
-/* 7. «Warum Bienen wichtig sind» */
+/* 9. Kapitel 2: Warum Bienen wichtig sind */
 .wichtig {
     padding: 2rem 0;
 }
 
-.wichtig .text-gross + .fakten,
-.fakten + .text-gross {
-    margin-top: 1.75rem;
+.fruehstueck {
+    background: #fff;
+    border-radius: 20px;
+    padding: 1.75rem;
+    margin: 2rem 0;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.05);
 }
+
+.fruehstueck-kopf {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.25rem;
+}
+
+.schalter {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    border: none;
+    background: #f7f3ea;
+    border-radius: 999px;
+    padding: 0.3rem 1rem 0.3rem 0.3rem;
+    font-weight: 700;
+    color: #2d3748;
+}
+
+.schalter-knopf {
+    position: relative;
+    width: 48px;
+    height: 26px;
+    border-radius: 999px;
+    background: var(--accent-green);
+    transition: background 0.3s ease;
+}
+
+.schalter-knopf::after {
+    content: "🐝";
+    position: absolute;
+    top: 1px;
+    left: 24px;
+    width: 24px;
+    height: 24px;
+    display: grid;
+    place-items: center;
+    background: #fff;
+    border-radius: 50%;
+    font-size: 0.8rem;
+    transition: left 0.3s ease;
+}
+
+.schalter[aria-pressed="true"] .schalter-knopf { background: #a0aec0; }
+.schalter[aria-pressed="true"] .schalter-knopf::after { left: 2px; content: "✕"; }
+
+.tisch {
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
+    gap: 0.75rem;
+    padding: 1.25rem;
+    border-radius: 16px;
+    background: repeating-linear-gradient(45deg, #fdf6e7 0 14px, #fbefd6 14px 28px);
+}
+
+.zutat {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.2rem;
+    background: #fff;
+    border-radius: 12px;
+    padding: 0.6rem 0.25rem;
+    transition: opacity 0.5s ease, transform 0.5s ease, filter 0.5s ease;
+}
+
+.zutat-emoji { font-size: 2rem; }
+.zutat-name { font-size: 0.8rem; color: #4a5568; }
+
+.tisch.ohne .zutat[data-bienen="ja"] {
+    opacity: 0.15;
+    transform: scale(0.75) rotate(-8deg);
+    filter: grayscale(1);
+}
+
+.tisch.ohne .zutat[data-bienen="teilweise"] {
+    opacity: 0.5;
+    filter: grayscale(0.7);
+}
+
+.tisch-text {
+    margin-top: 1rem;
+    min-height: 3em;
+}
+
+.tisch-text small { color: var(--text-muted); }
 
 .fakten {
     display: grid;
@@ -300,14 +682,12 @@ section.versteckt {
 
 .fakten article {
     background: #fff8e6;
-    border-radius: 12px;
+    border-radius: 16px;
     padding: 1.5rem;
     transition: transform 0.25s ease;
 }
 
-.fakten article:hover {
-    transform: translateY(-4px) rotate(-0.5deg);
-}
+.fakten article:hover { transform: translateY(-4px) rotate(-0.5deg); }
 
 .fakten .icon {
     font-size: 2.2rem;
@@ -317,7 +697,21 @@ section.versteckt {
 
 .fakten p { font-size: 0.95rem; color: #4a5568; }
 
-/* 8. Wetter-Abschnitte */
+.ueberleitung {
+    text-align: center;
+    max-width: 640px;
+    margin: 3rem auto 0;
+    font-size: 1.1rem;
+}
+
+.ueberleitung .frage {
+    font-size: clamp(1.8rem, 5vw, 2.6rem);
+    font-weight: 800;
+    color: #1a202c;
+    margin: 0.5rem 0;
+}
+
+/* 10. Wetter-Kapitel */
 .wetter-ebene {
     position: absolute;
     inset: 0;
@@ -336,8 +730,8 @@ section.versteckt {
     flex-wrap: wrap;
     align-items: center;
     gap: 0.4rem 1rem;
-    background: rgba(255, 255, 255, 0.92);
-    border: 1px solid var(--border-color);
+    background: rgba(255, 255, 255, 0.95);
+    border: 1px solid #e2e8f0;
     border-radius: 999px;
     padding: 0.35rem 1rem;
     font-size: 0.95rem;
@@ -363,8 +757,8 @@ section.versteckt {
 
 .thermometer {
     position: absolute;
-    top: 1.5rem;
-    right: 2rem;
+    top: 2rem;
+    right: 2.5rem;
     width: 18px;
     height: 90px;
     border: 3px solid #cbd5e0;
@@ -383,13 +777,29 @@ section.versteckt {
     transition: height 0.4s ease;
 }
 
-/* 9. Analyse-Textblöcke */
+.streifen-skala {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    margin-bottom: 0.75rem;
+}
+
+.streifen-skala i {
+    width: 160px;
+    height: 10px;
+    border-radius: 999px;
+    background: linear-gradient(90deg, rgb(43, 108, 176), rgb(247, 241, 230), rgb(197, 48, 48));
+}
+
+/* 11. Analyse-Textblöcke */
 .analyse {
     background-color: #f8f9fa;
     border-left: 4px solid var(--accent-brown);
     padding: 1.25rem 1.5rem;
     margin-top: 1.75rem;
-    border-radius: 0 8px 8px 0;
+    border-radius: 0 12px 12px 0;
 }
 
 .analyse p {
@@ -412,18 +822,67 @@ section.versteckt {
     color: #4a5568;
 }
 
-.zwei-spalten {
+/* 12. Kapitel 7: Wetter-Zeugnis */
+.zeugnis {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 2rem;
-    margin-top: 1.5rem;
+    grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+    gap: 1rem;
+    margin-top: 1rem;
 }
 
-/* 10. Grenzen & Footer */
+.zeugnis-karte {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+    padding: 1.25rem;
+    border-radius: 16px;
+    background: #fffaf0;
+    border: 1px solid #f3e6c4;
+    color: inherit;
+    text-decoration: none;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.zeugnis-karte:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 20px rgba(200, 140, 30, 0.18);
+}
+
+.zeugnis-karte h3 { margin: 0; }
+.zeugnis-icon { font-size: 2rem; }
+
+.meter {
+    width: 100%;
+    height: 12px;
+    border-radius: 999px;
+    background: #edf2f7;
+    overflow: hidden;
+}
+
+.meter > div {
+    width: var(--wert);
+    height: 100%;
+    border-radius: 999px;
+    background: linear-gradient(90deg, var(--accent-yellow), var(--accent-brown));
+}
+
+.zeugnis-wert {
+    font-size: 0.85rem;
+    color: #4a5568;
+}
+
+.erklaerung {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    margin-top: 1rem;
+}
+
+/* 13. Grenzen & Footer */
 .grenzen {
     background: #fffaf0;
     border: 1px solid #feebc8;
-    border-radius: 12px;
+    border-radius: 20px;
     padding: 2rem;
 }
 
@@ -439,19 +898,57 @@ footer {
 
 .status { margin-top: 0.4rem; }
 
-/* 11. Kleine Bildschirme */
-@media (max-width: 600px) {
-    .hero-inhalt { padding: 1.5rem; }
-    .karte { padding: 1.25rem; }
-    .chart { height: 320px; }
-    .chart-gross { height: 340px; }
-    .sonne, .thermometer { display: none; }
-    .flugbiene { font-size: 1.8rem; }
+.nach-oben {
+    display: inline-block;
+    margin-top: 1rem;
+    color: var(--honig-dunkel);
+    font-weight: 700;
 }
 
-/* 12. Wer weniger Bewegung möchte, bekommt keine Animationen */
+/* 14. Pollenspur des Mauszeigers */
+.pollen {
+    position: fixed;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--accent-yellow);
+    pointer-events: none;
+    z-index: 100;
+    animation: pollen 0.9s ease-out forwards;
+}
+
+@keyframes pollen {
+    to {
+        opacity: 0;
+        transform: translateY(14px) scale(0.3);
+    }
+}
+
+/* 15. Mittlere und kleine Bildschirme */
+@media (max-width: 900px) {
+    .kapitel-nav li a b { display: none; }
+    .kapitel-nav li a { padding: 0.35rem 0.5rem; font-size: 1.05rem; }
+    .bestand-raster { grid-template-columns: 1fr; }
+    .wabe-panel { max-width: 340px; margin: 0 auto; width: 100%; }
+}
+
+@media (max-width: 600px) {
+    .marke span { display: none; }
+    .hero-inhalt { padding: 1.5rem; }
+    .karte { padding: 1.25rem; border-radius: 16px; }
+    .chart { height: 320px; }
+    .sonne, .thermometer { display: none; }
+    .kapitel-kopf { padding-right: 0; }
+    .kapitel-icon { width: 48px; height: 54px; font-size: 1.5rem; }
+    .kurz { flex-direction: column; gap: 0.4rem; }
+    .wabe { --zelle-b: 30px; --zelle-h: 34px; }
+    .zeitreise { padding-right: 0.75rem; gap: 0.6rem; }
+    #regler-jahr { font-size: 1.2rem; }
+}
+
+/* 16. Wer weniger Bewegung möchte, bekommt keine Animationen */
 @media (prefers-reduced-motion: reduce) {
     html { scroll-behavior: auto; }
     .sonne { animation: none; }
-    section, .fakten article, .thermometer > div { transition: none; }
+    section, .fakten article, .zutat, .zelle, .thermometer > div { transition: none; }
 }

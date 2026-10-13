@@ -8,13 +8,27 @@
 </head>
 <body>
 
-<!-- Die Biene, die durch die Einführung fliegt -->
-<div id="flugbiene" class="flugbiene" aria-hidden="true">🐝</div>
+<!-- Kapitel-Navigation: zeigt immer, wo man in der Story ist -->
+<nav class="kapitel-nav" aria-label="Kapitel">
+    <a href="#start" class="marke">🐝 <span>Bienen-Story</span></a>
+    <ul>
+        <li><a href="#bestand" data-kapitel="bestand"><span aria-hidden="true">📉</span><b>Bestand</b></a></li>
+        <li><a href="#wichtig" data-kapitel="wichtig"><span aria-hidden="true">🌸</span><b>Warum wichtig</b></a></li>
+        <li><a href="#regen" data-kapitel="regen"><span aria-hidden="true">🌧️</span><b>Regen</b></a></li>
+        <li><a href="#sonne" data-kapitel="sonne"><span aria-hidden="true">☀️</span><b>Sonne</b></a></li>
+        <li><a href="#temperatur" data-kapitel="temperatur"><span aria-hidden="true">🌡️</span><b>Temperatur</b></a></li>
+        <li><a href="#schnee" data-kapitel="schnee"><span aria-hidden="true">❄️</span><b>Schnee</b></a></li>
+        <li><a href="#fazit" data-kapitel="fazit"><span aria-hidden="true">🍯</span><b>Fazit</b></a></li>
+    </ul>
+    <div class="fortschritt" id="fortschritt"></div>
+</nav>
 
-<header class="hero">
+<!-- 0. Einführung -->
+<header class="hero" id="start">
+    <div class="schwarm" id="schwarm" aria-hidden="true"></div>
     <div class="hero-inhalt">
         <p class="kicker">Datastory · IM3</p>
-        <h1>Wo sind die Bienen hin?</h1>
+        <h1>Wo sind die <span class="honig-text">Bienen</span> hin?</h1>
         <p class="lead">
             1994 gab es in der Schweiz fast 270'000 Bienenvölker. 18 Jahre später waren es
             noch rund 160'000. Was ist passiert, und wie geht es den Bienen heute?
@@ -22,10 +36,18 @@
         <p>
             Wir sind vier Studierende und haben dazu zwei Datensätze zusammengeführt: die Zahl der
             Bienenvölker in der Schweiz von 1994 bis 2024 (FAOSTAT) und die Klimadaten derselben
-            Jahre (MeteoSchweiz/BFS). Zuerst schauen wir uns an, wie sich der Bestand entwickelt hat.
-            Danach fragen wir: Hat das Wetter etwas damit zu tun?
+            Jahre (MeteoSchweiz/BFS).
         </p>
-        <a class="weiter" href="#bestand">Zur Geschichte ↓</a>
+
+        <p class="fahrplan-titel">So ist unsere Geschichte aufgebaut:</p>
+        <ol class="fahrplan">
+            <li><a href="#bestand"><span>📉</span>Wie hat sich der Bestand entwickelt?</a></li>
+            <li><a href="#wichtig"><span>🌸</span>Warum sind Bienen so wichtig?</a></li>
+            <li><a href="#regen"><span>🌦️</span>Hat das Wetter etwas damit zu tun?</a></li>
+            <li><a href="#fazit"><span>🍯</span>Was bleibt am Schluss?</a></li>
+        </ol>
+
+        <a class="weiter" href="#bestand">Los geht's ↓</a>
     </div>
 </header>
 
@@ -40,43 +62,73 @@
     </section>
 
     <!-- 1. Der Bienenbestand -->
-    <section id="bestand" class="karte">
-        <p class="schritt">Teil 1 · Der Bestand</p>
-        <h2 id="bestand-titel">Fast 20 Jahre Rückgang, dann die Wende</h2>
-        <p class="unterzeile">Anzahl Bienenvölker in der Schweiz pro Jahr, 1994–2024</p>
+    <section id="bestand" class="karte kapitel">
+        <p class="schritt">Kapitel 1 · Der Bestand</p>
+        <h2>Fast 20 Jahre Rückgang, dann die Wende</h2>
+        <div class="kurz" id="kurz-bestand"></div>
 
-        <div class="steuerung">
-            <div class="filter" role="group" aria-label="Ansicht wählen">
-                <button data-ansicht="bestand" class="aktiv">Bestand</button>
-                <button data-ansicht="veraenderung">Veränderung zum Vorjahr</button>
-            </div>
-            <div class="filter" role="group" aria-label="Phase wählen">
-                <button data-phase="" class="aktiv">Alle Jahre</button>
-                <button data-phase="Rückgang">Rückgang</button>
-                <button data-phase="Erholung">Erholung</button>
-            </div>
+        <!-- Zeitreise: Schieberegler durch die Jahre -->
+        <div class="zeitreise">
+            <button id="abspielen" class="abspielen" aria-label="Zeitreise abspielen">▶</button>
+            <input type="range" id="jahr-regler" min="1994" max="2024" value="1994" step="1" aria-label="Jahr wählen">
+            <output id="regler-jahr" for="jahr-regler">1994</output>
         </div>
 
-        <div class="legende">
-            <span><i class="punkt rot"></i><span id="legende-rot">Rückgang (bis zum Tiefpunkt)</span></span>
-            <span><i class="punkt gruen"></i><span id="legende-gruen">Erholung (danach)</span></span>
-        </div>
+        <div class="bestand-raster">
+            <!-- Die Bienenwabe: jede Zelle = 10'000 Völker -->
+            <div class="wabe-panel">
+                <div class="wabe" id="wabe" aria-hidden="true"></div>
+                <p class="wabe-zahl"><strong id="wabe-zahl">–</strong> Bienenvölker</p>
+                <p class="wabe-info" id="wabe-info"></p>
+                <p class="wabe-legende"><span class="mini-zelle"></span> = 10'000 Bienenvölker</p>
+            </div>
 
-        <div class="chart chart-gross"><canvas id="chart-bestand"></canvas></div>
-        <p id="detail" class="detail">Fahrt über ein Jahr oder tippt darauf, um die Details zu sehen.</p>
+            <div class="chart-panel">
+                <div class="steuerung">
+                    <div class="filter" role="group" aria-label="Ansicht wählen">
+                        <button data-ansicht="bestand" class="aktiv">Bestand</button>
+                        <button data-ansicht="veraenderung">Veränderung zum Vorjahr</button>
+                    </div>
+                    <div class="filter" role="group" aria-label="Phase wählen">
+                        <button data-phase="" class="aktiv">Alle</button>
+                        <button data-phase="Rückgang">Rückgang</button>
+                        <button data-phase="Erholung">Erholung</button>
+                    </div>
+                </div>
+                <div class="legende">
+                    <span><i class="punkt rot"></i><span id="legende-rot">Rückgang (bis zum Tiefpunkt)</span></span>
+                    <span><i class="punkt gruen"></i><span id="legende-gruen">Erholung (danach)</span></span>
+                </div>
+                <div class="chart"><canvas id="chart-bestand"></canvas></div>
+            </div>
+        </div>
 
         <div class="analyse" id="analyse-bestand"></div>
     </section>
 
     <!-- 2. Warum Bienen wichtig sind -->
-    <section class="wichtig">
-        <p class="schritt">Teil 2 · Warum uns das etwas angeht</p>
+    <section id="wichtig" class="kapitel wichtig">
+        <p class="schritt">Kapitel 2 · Warum uns das etwas angeht</p>
         <h2>Ohne Bienen wird es still auf dem Teller</h2>
         <p class="text-gross">
             Bienen machen Honig, aber ihre wichtigste Arbeit ist eine andere. Wenn eine Biene von Blüte
             zu Blüte fliegt, trägt sie Blütenstaub mit. Erst so können viele Pflanzen Früchte und
             Samen bilden.
         </p>
+
+        <!-- Interaktiv: Frühstück mit und ohne Bienen -->
+        <div class="fruehstueck">
+            <div class="fruehstueck-kopf">
+                <h3>Ein Frühstück ohne Bienen?</h3>
+                <button id="ohne-bienen" class="schalter" aria-pressed="false">
+                    <span class="schalter-knopf"></span>
+                    <span id="schalter-text">Mit Bienen</span>
+                </button>
+            </div>
+            <ul class="tisch" id="tisch"></ul>
+            <p class="tisch-text" id="tisch-text">Klickt auf den Schalter und schaut, was vom Tisch verschwindet.</p>
+        </div>
+
         <div class="fakten">
             <article>
                 <span class="icon" aria-hidden="true">🌸</span>
@@ -94,30 +146,45 @@
                 <p>Auch viele Wildpflanzen brauchen Bestäuber. Von diesen Pflanzen leben wiederum Vögel, Insekten und andere Tiere.</p>
             </article>
         </div>
-        <p class="text-gross">
-            Wenn Bienenvölker verschwinden, betrifft das also nicht nur Imkerinnen und Imker,
-            sondern uns alle. Deshalb wollten wir wissen: <strong>Liegt es am Wetter?</strong>
-            Auf den nächsten Seiten vergleichen wir den Bestand mit vier Klimawerten.
-        </p>
+
+        <div class="ueberleitung">
+            <p>Wenn Bienenvölker verschwinden, betrifft das also nicht nur Imkerinnen und Imker, sondern uns alle.</p>
+            <p class="frage">Liegt es am Wetter?</p>
+            <p>In den nächsten vier Kapiteln vergleichen wir den Bestand mit Regen, Sonne, Temperatur und Schnee.</p>
+        </div>
     </section>
 
     <!-- 3. Niederschlag -->
-    <section class="karte wetter" data-wetter="regen">
+    <section id="regen" class="karte kapitel wetter" data-wetter="regen">
         <canvas class="wetter-ebene" aria-hidden="true"></canvas>
-        <p class="schritt">Teil 3 · Regen</p>
-        <h2>Machen nasse Jahre den Bienen zu schaffen?</h2>
-        <p class="unterzeile">Jahresniederschlag in mm. Die Farbe zeigt, ob die Zahl der Bienenvölker im selben Jahr gesunken (rot) oder gestiegen (grün) ist. 1994 (grau) hat kein Vorjahr.</p>
+        <div class="kapitel-kopf">
+            <span class="kapitel-icon" aria-hidden="true">🌧️</span>
+            <div>
+                <p class="schritt">Kapitel 3 · Regen</p>
+                <h2>Machen nasse Jahre den Bienen zu schaffen?</h2>
+            </div>
+        </div>
+        <div class="kurz" id="kurz-regen"></div>
+        <p class="unterzeile">Jahresniederschlag in mm. Die Farbe zeigt, ob die Zahl der Bienenvölker im selben Jahr
+            <b class="rot-text">gesunken</b> oder <b class="gruen-text">gestiegen</b> ist. 1994 (grau) hat kein Vorjahr.</p>
         <div class="jahr-anzeige" id="anzeige-regen"></div>
         <div class="chart"><canvas id="chart-regen"></canvas></div>
         <div class="analyse" id="analyse-regen"></div>
     </section>
 
     <!-- 4. Sonnenschein -->
-    <section class="karte wetter" data-wetter="sonne">
-        <div class="sonne" id="sonne" aria-hidden="true">☀️</div>
-        <p class="schritt">Teil 4 · Sonne</p>
-        <h2>Bringt mehr Sonne mehr Bienen?</h2>
-        <p class="unterzeile">Jeder Punkt ist ein Jahr. Je weiter rechts, desto sonniger war das Jahr. Je weiter oben, desto stärker ist die Zahl der Bienenvölker gewachsen.</p>
+    <section id="sonne" class="karte kapitel wetter" data-wetter="sonne">
+        <div class="sonne" id="sonne-icon" aria-hidden="true">☀️</div>
+        <div class="kapitel-kopf">
+            <span class="kapitel-icon" aria-hidden="true">☀️</span>
+            <div>
+                <p class="schritt">Kapitel 4 · Sonne</p>
+                <h2>Bringt mehr Sonne mehr Bienen?</h2>
+            </div>
+        </div>
+        <div class="kurz" id="kurz-sonne"></div>
+        <p class="unterzeile">Jeder Punkt ist ein Jahr. Je weiter <b>rechts</b>, desto sonniger. Je weiter <b>oben</b>, desto stärker
+            ist die Zahl der Bienenvölker gewachsen. Die Ecken sagen, was das bedeutet.</p>
         <div class="legende">
             <span><i class="punkt rot"></i>Jahr in der Rückgangsphase</span>
             <span><i class="punkt gruen"></i>Jahr in der Erholungsphase</span>
@@ -128,43 +195,55 @@
     </section>
 
     <!-- 5. Temperatur -->
-    <section class="karte wetter" data-wetter="temperatur">
+    <section id="temperatur" class="karte kapitel wetter" data-wetter="temperatur">
         <div class="thermometer" aria-hidden="true"><div id="thermo-fuellung"></div></div>
-        <p class="schritt">Teil 5 · Temperatur</p>
-        <h2>Wärmere Jahre, mehr Bienen?</h2>
-        <p class="unterzeile">Mittlere Jahrestemperatur in °C. Die Punkte sind nach Phase eingefärbt, die gestrichelten Linien zeigen den Durchschnitt jeder Phase.</p>
+        <div class="kapitel-kopf">
+            <span class="kapitel-icon" aria-hidden="true">🌡️</span>
+            <div>
+                <p class="schritt">Kapitel 5 · Temperatur</p>
+                <h2>Wärmere Jahre, mehr Bienen?</h2>
+            </div>
+        </div>
+        <div class="kurz" id="kurz-temperatur"></div>
+        <p class="unterzeile">Klimastreifen: Jeder Streifen ist ein Jahr. Je <b class="blau-text">blauer</b>, desto kühler,
+            je <b class="rot-text">röter</b>, desto wärmer. Die dunkle Linie zeigt die Bienenvölker.</p>
+        <div class="streifen-skala" aria-hidden="true">
+            <span id="skala-min">kühl</span><i></i><span id="skala-max">warm</span>
+        </div>
         <div class="jahr-anzeige" id="anzeige-temperatur"></div>
         <div class="chart"><canvas id="chart-temperatur"></canvas></div>
         <div class="analyse" id="analyse-temperatur"></div>
     </section>
 
     <!-- 6. Neuschnee -->
-    <section class="karte wetter winter" data-wetter="schnee">
+    <section id="schnee" class="karte kapitel wetter winter" data-wetter="schnee">
         <canvas class="wetter-ebene" aria-hidden="true"></canvas>
-        <p class="schritt">Teil 6 · Schnee</p>
-        <h2>Brauchen Bienen einen richtigen Winter?</h2>
-        <p class="unterzeile">Neuschnee pro Jahr in cm. Hellere Balken: Rückgangsphase, dunklere Balken: Erholungsphase. Fahrt über ein Jahr: So stark schneit es in diesem Kasten.</p>
+        <div class="kapitel-kopf">
+            <span class="kapitel-icon" aria-hidden="true">❄️</span>
+            <div>
+                <p class="schritt">Kapitel 6 · Schnee</p>
+                <h2>Brauchen Bienen einen richtigen Winter?</h2>
+            </div>
+        </div>
+        <div class="kurz" id="kurz-schnee"></div>
+        <p class="unterzeile">Neuschnee pro Jahr in cm. Die gestrichelten Linien zeigen den Durchschnitt jeder Phase.
+            Fahrt über ein Jahr: So stark schneit es in diesem Kasten.</p>
         <div class="jahr-anzeige" id="anzeige-schnee"></div>
         <div class="chart"><canvas id="chart-schnee"></canvas></div>
         <div class="analyse" id="analyse-schnee"></div>
     </section>
 
-    <!-- 7. Gesamtschau -->
-    <section class="karte">
-        <p class="schritt">Teil 7 · Gesamtschau</p>
-        <h2>Welchen Einfluss hat das Wetter wirklich?</h2>
+    <!-- 7. Fazit -->
+    <section id="fazit" class="karte kapitel">
+        <p class="schritt">Kapitel 7 · Fazit</p>
+        <h2>Das Wetter-Zeugnis</h2>
+        <p class="unterzeile">Wie gut erklärt jeder Wetterwert die Entwicklung der Bienen? Klickt auf eine Karte, um zum Kapitel zu springen.</p>
 
-        <div class="zwei-spalten">
-            <div>
-                <h3>Wie anders war das Wetter in der Erholungsphase?</h3>
-                <p class="unterzeile">Durchschnitt der Erholungsphase im Vergleich zur Rückgangsphase, in Prozent</p>
-                <div class="chart chart-klein"><canvas id="chart-vergleich"></canvas></div>
-            </div>
-            <div>
-                <h3>Wie eng hängt das Wetter mit den Bienen zusammen?</h3>
-                <p class="unterzeile">Zusammenhang mit der Veränderung der Bienenvölker im selben Jahr (0 = kein Zusammenhang, ±1 = perfekter Zusammenhang)</p>
-                <div class="chart chart-klein"><canvas id="chart-zusammenhang"></canvas></div>
-            </div>
+        <div class="zeugnis" id="zeugnis"></div>
+
+        <div class="erklaerung">
+            <b>So lest ihr den Balken:</b> Er zeigt, wie eng ein Wetterwert mit der Veränderung der Bienenvölker
+            im selben Jahr zusammenhängt. Leer heisst «kein Zusammenhang», voll heisst «perfekter Zusammenhang».
         </div>
 
         <div class="analyse fazit" id="analyse-fazit"></div>
@@ -183,6 +262,7 @@
     <footer>
         <p>Quellen: FAOSTAT (Bienenvölker), MeteoSchweiz/BFS (Klimadaten, homogenisierte Daten).</p>
         <p id="status" class="status"></p>
+        <a href="#start" class="nach-oben">Zurück zum Anfang 🐝</a>
     </footer>
 </main>
 
