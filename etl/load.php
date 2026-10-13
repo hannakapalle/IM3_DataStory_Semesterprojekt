@@ -14,11 +14,16 @@ header('Content-Type: text/plain; charset=utf-8');
 
 require __DIR__ . '/../config.php';
 
-$result = include __DIR__ . '/transform.php';
-$rows = $result['data'];
+// 1. Transform aufrufen: transform.php gibt direkt das $daten-Array zurück
+$rows = include __DIR__ . '/transform.php';
+
+if (!is_array($rows)) {
+    exit("Fehler: transform.php hat keine gültigen Daten geliefert.\n");
+}
 
 echo 'Der Transform liefert ' . count($rows) . " Zeilen.\n\n";
 
+// 2. Datenbankverbindung aufbauen
 try {
     $pdo = new PDO($dsn, $username, $password, $options);
     echo "Verbindung steht.\n\n";
@@ -26,11 +31,11 @@ try {
     exit('Verbindung fehlgeschlagen: ' . $e->getMessage() . "\n");
 }
 
-// Alten Stand löschen, um doppelte Einträge zu vermeiden.
+// 3. Alten Stand löschen, um doppelte Einträge zu vermeiden.
 $deleted = $pdo->exec('DELETE FROM bienenjahre');
 echo $deleted . " alte Zeilen gelöscht.\n\n";
 
-// prepare() einmal vor der Schleife, execute() pro Zeile.
+// 4. Prepared Statement vorbereiten (Keys ohne Doppelpunkte passen direkt zu $row)
 $insert = $pdo->prepare(
     'INSERT INTO bienenjahre
        (jahr, bienenvoelker, veraenderung_abs, veraenderung_prozent, phase, niederschlag_mm, sonnenscheindauer_h, temperatur_c, neuschnee_cm)
@@ -38,13 +43,24 @@ $insert = $pdo->prepare(
        (:jahr, :bienenvoelker, :veraenderung_abs, :veraenderung_prozent, :phase, :niederschlag_mm, :sonnenscheindauer_h, :temperatur_c, :neuschnee_cm)'
 );
 
+// 5. Daten Zeile für Zeile in die Datenbank schreiben
 foreach ($rows as $row) {
-    $insert->execute($row);
+    $insert->execute([
+        ':jahr'                 => $row['jahr'],
+        ':bienenvoelker'        => $row['bienenvoelker'],
+        ':veraenderung_abs'     => $row['veraenderung_abs'],
+        ':veraenderung_prozent' => $row['veraenderung_prozent'],
+        ':phase'                => $row['phase'],
+        ':niederschlag_mm'      => $row['niederschlag_mm'],
+        ':sonnenscheindauer_h'  => $row['sonnenscheindauer_h'],
+        ':temperatur_c'         => $row['temperatur_c'],
+        ':neuschnee_cm'         => $row['neuschnee_cm'],
+    ]);
 }
 
 echo count($rows) . " Zeilen geschrieben.\n\n";
 
-// Kontrolle: zählen und ein paar Werte zurücklesen.
+// 6. Kontrolle: Zählen und die letzten 3 Jahre zurücklesen.
 $total = $pdo->query('SELECT COUNT(*) FROM bienenjahre')->fetchColumn();
 echo "In bienenjahre stehen jetzt {$total} Zeilen.\n\n";
 
@@ -55,7 +71,7 @@ $check = $pdo->query(
      LIMIT 3'
 );
 
-foreach ($check->fetchAll() as $row) {
+foreach ($check->fetchAll(PDO::FETCH_ASSOC) as $row) {
     echo $row['jahr'] . "\t"
         . $row['bienenvoelker'] . " Völker\t"
         . $row['veraenderung_prozent'] . " %\t"

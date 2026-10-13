@@ -34,12 +34,14 @@ $audit = [
 $bienenProJahr = [];
 
 foreach ($raw['bienen'] as $row) {
-    if ((isset($row['Item']) && $row['Item'] !== 'Bees') || (isset($row['Area']) && $row['Area'] !== 'Switzerland')) {
+    // Falls Spalten wie Area/Item vorhanden sind, diese flexibler prüfen:
+    if (isset($row['Item']) && !in_array($row['Item'], ['Bees', 'Bienen', 'Bienenvölker'])) {
         continue;
     }
 
-    $jahr = isset($row['Year']) ? (int) $row['Year'] : (isset($row['Year Code']) ? (int) $row['Year Code'] : null);
-    $wert = isset($row['Value']) ? (int) $row['Value'] : null;
+    // Jahr und Wert auslesen
+    $jahr = isset($row['Year']) ? (int) $row['Year'] : (isset($row['Jahr']) ? (int) $row['Jahr'] : null);
+    $wert = isset($row['Value']) ? (int) $row['Value'] : (isset($row['Wert']) ? (int) $row['Wert'] : null);
 
     if ($jahr && $wert !== null) {
         $bienenProJahr[$jahr] = $wert;
@@ -121,7 +123,7 @@ foreach ($bienenProJahr as $jahr => $bienenvoelker) {
     $diffPct = null;
 
     if ($vorjahrWert !== null) {
-        $diffAbs = $bienenvoelker - $vorjahrWert;
+        $diffAbs = $bienenvoelker - $vorjahrWert; // Behebung des Syntaxfehlers
         $diffPct = round(($diffAbs / $vorjahrWert) * 100, 2);
     }
 

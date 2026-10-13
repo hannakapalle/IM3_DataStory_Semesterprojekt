@@ -43,18 +43,18 @@ function readCsv(string $file, string $delimiter = ','): array
     return $rows;
 }
 
-// Erkennen, welche Klimadatei im Ordner data/ liegt (Semikolon oder Komma)
-$klimaFile = __DIR__ . '/data/klimadaten.csv';
+// Pfade und Trennzeichen für die benötigten Dateien festlegen
+$dataDir = __DIR__ . '/data';
+
+$bienenFile = $dataDir . '/bienendaten.csv';
+$bienenDelimiter = ';';
+
+$klimaFile = $dataDir . '/klimadaten.csv';
 $klimaDelimiter = ';'; // Klimadaten nutzen meist Semikolon
 
-if (!file_exists($klimaFile)) {
-    // Fallback auf die alte Datei, falls klimadaten.csv noch nicht im Ordner liegt
-    $klimaFile = __DIR__ . '/data/jahresniederschlag.csv';
-    $klimaDelimiter = ',';
-}
-
+// Rohdaten einlesen
 $raw = [
-    'bienen' => readCsv(__DIR__ . '/data/bienen_schweiz.csv', ','),
+    'bienen' => readCsv($bienenFile, $bienenDelimiter),
     'klima'  => readCsv($klimaFile, $klimaDelimiter),
 ];
 
